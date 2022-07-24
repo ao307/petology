@@ -1,4 +1,3 @@
-import 'package:doctor_care/layout/home_layout.dart';
 import 'package:doctor_care/shared/api/remote/dio_helper.dart';
 import 'package:doctor_care/shared/bloc_observer.dart';
 import 'package:doctor_care/shared/components/constants.dart';
@@ -10,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'modules/auth/login_doc.dart';
+import 'modules/auth/login_screen/login_screen.dart';
 
 
 Widget startScreenDoctor = LoginScreen();
@@ -23,7 +22,7 @@ Future<void> startScreen() async {
   final idPa = await box.get(idDoctorBox);
 
   if(refreshToken!=null&&accessToken!=null&&idPa!=null){
-    startScreenDoctor=HomeLayOut();
+    startScreenDoctor=LoginScreen();
   }
 
 }
@@ -83,3 +82,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+
+// change mouse cursor to image every time we move the cursor

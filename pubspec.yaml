@@ -93,6 +93,7 @@ flutter:
     - assets/image/
     - assets/translation/
     - assets/image/logo/
+    - assets/image/main_images/
   fonts:
     - family: Cairo
       fonts:

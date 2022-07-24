@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class MyColors {
 //0xff
   static const MaterialColor cPrimary = MaterialColor(
-    0xff0f357a,
+    0xFF492F24,
     // 0% comes in here, this will be color picked if no shade is selected when defining a Color property which doesn’t require a swatch.
     <int, Color>{
       50: Color(0xffce5641), //10%
@@ -20,43 +20,46 @@ class MyColors {
     },
   );
 
-  static const cIconLight = Color(0xff0f357a);
+  static const cMainColor = Color(0xFF492F24);
+  static Color cSecondaryColor = const Color(0xFF492F24).withOpacity(0.49);
+  static const cThirdColor = Color(0xFFFFE3C5);
+  static const cFourthColor = Color(0xFFAE957B);
+  static const c5Color = Color(0xffadadad);
+  static const c6Color = Color(0xFF180701);
+
+  static const cIconLight = Color(0xFF492F24);
   static const cIconDark = Colors.white;
 
-  static const cCardsColorLight = Color(0xff0f357a);
-  static const cCardsColorDark = Color(0xff393E46);
+  static const cCardsColorLight = Color(0xFF492F24);
+  static const cCardsColorDark = Color(0xffadadad);
 
   static const cScaffoldBackgroundColorLight = Colors.white;
-  static const cScaffoldBackgroundColorDark = Color(0xff222831);
+  static const cScaffoldBackgroundColorDark = Color(0xff3e3e3e);
 
   static const cDividerLight = Colors.black;
   static const cDividerDark = Colors.white;
 
   static const cAppBarLight = Colors.white;
-  static const cAppBarDark = Color(0xff222831);
+  static const cAppBarDark = Color(0xff3e3e3e);
 
-  static const cAppBarTextLight = Color(0xff0f357a);
+  static const cAppBarTextLight = Color(0xFF492F24);
   static const cAppBarTextDark = Colors.white;
 
-  static const cAppBarIconLight =  Color(0xff0f357a);
+  static const cAppBarIconLight = Color(0xFF492F24);
   static const cAppBarIconDark = Colors.white;
 
   static const cErrorColor = Color(0xffBC2729);
 
   static const cBottomBarLight = Colors.white;
-  static const cBottomBarDark = Color(0xff222831);
+  static const cBottomBarDark = Color(0xff3e3e3e);
 
-  static const cTextLight = Color(0xff0f357a);
+  static const cTextLight = Colors.black;
   static const cTextDark = Colors.white;
 
-  static const cTextButtonLight = Color(0xff0f357a);
+  static const cTextButtonLight = Color(0xFF492F24);
   static const cTextButtonDark = Colors.white;
 
-  static const cTextSubtitleLight = Color(0xff3EA7C4);
-  static const cTextSubtitleLight2 = Color(0xff3EA7C4);
-  static const cTextSubtitleDark = Colors.white;
-
-  static const cSelectedIcon = Color(0xff0f357a);
-  static const cUnSelectedIconLight = Color(0xff707070);
-  static const cUnSelectedIconDark = Colors.white;
+  static const cSelectedIcon = Color(0xFF492F24);
+  static const cUnSelectedIconLight = Color(0xffadadad);
+  static const cUnSelectedIconDark = Color(0xffadadad);
 }
