@@ -1,5 +1,5 @@
 import 'package:doctor_care/modules/home_screen/catigories_widgets/item_of_animal.dart';
-import 'package:doctor_care/modules/home_screen/our_friends_looking_for_house/carousel_slider_widget.dart';
+import 'package:doctor_care/shared/components/main_component/carousel_slider_widget.dart';
 import 'package:doctor_care/shared/components/reuse_functions.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';

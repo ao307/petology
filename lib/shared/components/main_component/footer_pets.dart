@@ -39,7 +39,7 @@ class FooterPets extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         FooterItems(
-                          topTitle: 'we are waiting you'.tr().toCapitalized(),
+                          topTitle: 'for any questions'.tr().toCapitalized(),
                           icon1: emailSvg,
                           title1: 'email@gmail.com'.tr().toCapitalized(),
                           icon2: phoneSvg,
@@ -47,10 +47,10 @@ class FooterPets extends StatelessWidget {
                         ),
                         FooterItems(
                           topTitle: 'we are waiting you'.tr().toCapitalized(),
-                          icon1: emailSvg,
-                          title1: 'email@gmail.com'.tr().toCapitalized(),
-                          icon2: phoneSvg,
-                          title2: '+966 544 544 544'.tr().toCapitalized(),
+                          icon1: phoneSvg,
+                          title1: 'First settlement/Cairo'.tr().toCapitalized(),
+                          icon2: locationSvg,
+                          title2: 'First settlement/Cairo'.tr().toCapitalized(),
                         ),
                       ],
                     ),

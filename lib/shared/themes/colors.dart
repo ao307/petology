@@ -19,6 +19,11 @@ class MyColors {
       900: Color(0xff000000), //100%
     },
   );
+  LinearGradient sharedGradient=const LinearGradient(
+    begin: Alignment(-0.98, 0.39),
+    end: Alignment(0.98, 0.49),
+    colors: [Color(0xFF56392D), Color(0xFF110B09)],
+  );
 
   static const cMainColor = Color(0xFF492F24);
   static Color cSecondaryColor = const Color(0xFF492F24).withOpacity(0.49);
@@ -62,4 +67,5 @@ class MyColors {
   static const cSelectedIcon = Color(0xFF492F24);
   static const cUnSelectedIconLight = Color(0xffadadad);
   static const cUnSelectedIconDark = Color(0xffadadad);
+
 }
