@@ -1,11 +1,6 @@
 import 'package:doctor_care/shared/components/reuse_functions.dart';
-import 'package:doctor_care/shared/components/svg_images.dart';
-import 'package:doctor_care/shared/cubit/cubit.dart';
-import 'package:doctor_care/shared/cubit/states.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../themes/colors.dart';
@@ -158,13 +153,13 @@ class SVGString extends StatelessWidget {
 }
 
 class RoundedTextFormFieldPets extends StatelessWidget {
-  const RoundedTextFormFieldPets(
-      {Key? key,
-      required this.textFormField,
-      this.validator,
-      this.isPassword,
-      required this.hintText})
-      : super(key: key);
+  const RoundedTextFormFieldPets({
+    Key? key,
+    required this.textFormField,
+    this.validator,
+    this.isPassword,
+    required this.hintText,
+  }) : super(key: key);
   final TextEditingController? textFormField;
   final FormFieldValidator<String>? validator;
   final bool? isPassword;
@@ -220,6 +215,45 @@ class RoundedTextFormFieldPets extends StatelessWidget {
   }
 }
 
+class SeeMoreNtn extends StatelessWidget {
+  const SeeMoreNtn({Key? key, required this.text, required this.onPressed}) : super(key: key);
+
+  final String text;
+  final Function() onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return OutlinedButton(
+      style: ButtonStyle(
+        elevation: MaterialStateProperty.all(0),
+        alignment: Alignment.center,
+        side: MaterialStateProperty.all(
+            const BorderSide(width: 4, color: MyColors.cThirdColor,),),
+        padding: MaterialStateProperty.all(
+          const EdgeInsets.only(
+            right: 75,
+            left: 75,
+            top: 20,
+            bottom: 20,
+          ),
+        ),
+        backgroundColor: MaterialStateProperty.all(Colors.transparent),
+        shape: MaterialStateProperty.all(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(
+              30,
+            ),
+          ),
+        ),
+      ),
+      onPressed: onPressed,
+      child: Text(
+        text.tr().toCapitalized(),
+        style: const TextStyle(fontSize: 20.0,fontWeight: FontWeight.w700,),
+      ),
+    );
+  }
+}
 
 // login components
 

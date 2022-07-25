@@ -96,4 +96,3 @@ class ButtonsOfAuthInBarSignUp extends StatelessWidget {
     );
   }
 }
-
