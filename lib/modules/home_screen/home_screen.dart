@@ -1,18 +1,13 @@
-import 'dart:math';
 
-import 'package:doctor_care/modules/auth/login_screen/login_body.dart';
-import 'package:doctor_care/modules/auth/signup_screen/signup_body.dart';
+import 'package:doctor_care/modules/home_screen/about_widgets/second_in_home.dart';
+import 'package:doctor_care/modules/home_screen/catigories_widgets/third_in_home.dart';
 import 'package:doctor_care/modules/home_screen/first_in_home_top/first_in_home_top.dart';
-import 'package:doctor_care/modules/home_screen/first_in_home_top/second_in_home.dart';
-import 'package:doctor_care/modules/home_screen/first_in_home_top/third_in_home.dart';
+import 'package:doctor_care/modules/home_screen/how_to_care_friends/how_to_care_friends.dart';
+import 'package:doctor_care/modules/home_screen/our_friends_looking_for_house/our_friends_looking_for_house.dart';
 import 'package:doctor_care/shared/components/main_component/appbar_pets.dart';
 import 'package:doctor_care/shared/components/main_component/footer_pets.dart';
 import 'package:doctor_care/shared/components/responsive.dart';
-import 'package:doctor_care/shared/components/reuse_functions.dart';
-import 'package:doctor_care/shared/components/widgets.dart';
 import 'package:doctor_care/shared/cubit/states.dart';
-import 'package:doctor_care/shared/themes/colors.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -60,6 +55,8 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
                         title: "Lets get this right ....",
                         subtitle: "What kind of friend you looking for?",
                       ),
+                      const OFLForHouse(),
+                      const HTCFriends(),
                       const FooterPets(),
                     ],
                   ),
@@ -72,4 +69,3 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
     );
   }
 }
-

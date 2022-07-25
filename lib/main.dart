@@ -1,5 +1,3 @@
-import 'package:doctor_care/modules/auth/signup_screen/signup_body.dart';
-import 'package:doctor_care/modules/auth/signup_screen/signup_screen.dart';
 import 'package:doctor_care/modules/home_screen/home_screen.dart';
 import 'package:doctor_care/shared/api/remote/dio_helper.dart';
 import 'package:doctor_care/shared/bloc_observer.dart';
