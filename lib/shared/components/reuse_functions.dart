@@ -73,6 +73,27 @@ String? validateEmail(String? value) {
   }
 }
 
+String? validateName(String? value) {
+  const String pattern = r'[!@#<>?":_`~;[\]\\|=+)(*&^%\s-]';
+  final RegExp regex = RegExp(pattern);
+  if (value == null || value.isEmpty || regex.hasMatch(value)) {
+    return 'enter a valid name'.tr().toCapitalized();
+  } else {
+    return null;
+  }
+}
+
+// validate password
+String? validatePassword(String? value) {
+  if (value == null || value.isEmpty) {
+    return 'enter a valid password'.tr().toCapitalized();
+  } else if (value.length < 6) {
+    return 'password must be at least 6 characters'.tr().toCapitalized();
+  } else {
+    return null;
+  }
+}
+
 void showAlertDialog(
     {required BuildContext context,
     String? title,

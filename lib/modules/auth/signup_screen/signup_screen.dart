@@ -1,4 +1,5 @@
 import 'package:doctor_care/modules/auth/login_screen/login_body.dart';
+import 'package:doctor_care/modules/auth/signup_screen/signup_body.dart';
 import 'package:doctor_care/shared/components/main_component/appbar_pets.dart';
 import 'package:doctor_care/shared/components/main_component/footer_pets.dart';
 import 'package:doctor_care/shared/components/responsive.dart';
@@ -8,8 +9,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../shared/cubit/cubit.dart';
 
-class LoginScreen extends StatelessWidget {
-  LoginScreen({Key? key}) : super(key: key);
+class SignUpScreen extends StatelessWidget {
+  SignUpScreen({Key? key}) : super(key: key);
 
   final formKey = GlobalKey<FormState>();
 
@@ -33,8 +34,9 @@ class LoginScreen extends StatelessWidget {
                 const AppBarOfPets(),
                 Expanded(
                   child: ListView(
+                    padding: const EdgeInsetsDirectional.only(top: 150),
                     children: const [
-                      LoginBody(),
+                      SignUpBody(),
                       SizedBox(height: 150,),
                       FooterPets(),
                     ],

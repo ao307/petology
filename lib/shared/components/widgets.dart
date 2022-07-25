@@ -1,7 +1,11 @@
 import 'package:doctor_care/shared/components/reuse_functions.dart';
 import 'package:doctor_care/shared/components/svg_images.dart';
+import 'package:doctor_care/shared/cubit/cubit.dart';
+import 'package:doctor_care/shared/cubit/states.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../themes/colors.dart';
@@ -216,6 +220,7 @@ class RoundedTextFormFieldPets extends StatelessWidget {
   }
 }
 
+
 // login components
 
 class TxtBtn extends StatelessWidget {
@@ -359,10 +364,16 @@ class SocialBtn extends StatelessWidget {
 }
 
 class TextRichBtn extends StatelessWidget {
-  const TextRichBtn({Key? key,this.onPressed,this.text1,this.text2,}) : super(key: key);
+  const TextRichBtn({
+    Key? key,
+    this.onPressed,
+    this.text1,
+    this.text2,
+  }) : super(key: key);
   final GestureTapCallback? onPressed;
   final String? text1;
   final String? text2;
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -370,7 +381,7 @@ class TextRichBtn extends StatelessWidget {
       children: [
         Text(
           "${"$text1".tr().toCapitalized()} ",
-          style:  const TextStyle(
+          style: const TextStyle(
             fontSize: 16.0,
             fontWeight: FontWeight.w600,
             color: MyColors.cFourthColor,
