@@ -31,11 +31,7 @@ class AppBarOfPets extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Container(
-                height: 20,
-                width: 200,
-                color: Colors.white,
-              ),
+              Image.asset("assets/image/logo/bar.png"),
               Row(
                 children: cubit(context).buttonsTitleList,
               ),

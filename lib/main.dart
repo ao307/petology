@@ -1,3 +1,6 @@
+import 'package:doctor_care/modules/auth/signup_screen/signup_body.dart';
+import 'package:doctor_care/modules/auth/signup_screen/signup_screen.dart';
+import 'package:doctor_care/modules/home_screen/home_screen.dart';
 import 'package:doctor_care/shared/api/remote/dio_helper.dart';
 import 'package:doctor_care/shared/bloc_observer.dart';
 import 'package:doctor_care/shared/components/constants.dart';
@@ -12,17 +15,14 @@ import 'package:hive_flutter/adapters.dart';
 import 'modules/auth/login_screen/login_screen.dart';
 
 
-Widget startScreenDoctor = LoginScreen();
+Widget startScreenPets = HomeScreen();
 
 Future<void> startScreen() async {
   await Hive.initFlutter();
   final box = await Hive.openBox(boxName);
-  final refreshToken = await box.get(refreshTokenDoctorBox);
-  final accessToken = await box.get(accessTokenDoctorBox);
-  final idPa = await box.get(idDoctorBox);
-
-  if(refreshToken!=null&&accessToken!=null&&idPa!=null){
-    startScreenDoctor=LoginScreen();
+  final access = await box.get(accessToken);
+  if(access!=null){
+    startScreenPets=LoginScreen();
   }
 
 }
@@ -75,7 +75,7 @@ class MyApp extends StatelessWidget {
             theme: lightTheme(),
             darkTheme: darkTheme(),
             themeMode: AppCubit.isDark ? ThemeMode.dark : ThemeMode.light,
-            home: startScreenDoctor,
+            home: startScreenPets,
           );
         },
       ),
