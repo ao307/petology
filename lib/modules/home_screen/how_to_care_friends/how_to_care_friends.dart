@@ -1,11 +1,8 @@
-import 'package:doctor_care/modules/home_screen/catigories_widgets/card_of_catigories.dart';
 import 'package:doctor_care/modules/home_screen/how_to_care_friends/care_items_in_home.dart';
 import 'package:doctor_care/shared/components/reuse_functions.dart';
-import 'package:doctor_care/shared/components/svg_images.dart';
 import 'package:doctor_care/shared/themes/colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class HTCFriends extends StatelessWidget {
   const HTCFriends({
@@ -40,7 +37,7 @@ class HTCFriends extends StatelessWidget {
           Wrap(
             crossAxisAlignment: WrapCrossAlignment.center,
             alignment: WrapAlignment.center,
-            spacing: 50,
+            spacing: 80,
             children: List.generate(9, (index) => CIIHome(
               title: '$index',
               imageLink: 'assets/image/main_images/dog_in_home.png',

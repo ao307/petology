@@ -56,7 +56,9 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
                         subtitle: "What kind of friend you looking for?",
                       ),
                       const OFLForHouse(),
-                      const HTCFriends(),
+                      const HTCFriends(
+                        title: "How to care for your friends",
+                      ),
                       const FooterPets(),
                     ],
                   ),
