@@ -1,7 +1,9 @@
+import 'package:doctor_care/modules/auth/signup_screen/signup_screen.dart';
 import 'package:doctor_care/modules/home_screen/home_screen.dart';
 import 'package:doctor_care/shared/api/remote/dio_helper.dart';
 import 'package:doctor_care/shared/bloc_observer.dart';
 import 'package:doctor_care/shared/components/constants.dart';
+import 'package:doctor_care/shared/components/reuse_functions.dart';
 import 'package:doctor_care/shared/cubit/cubit.dart';
 import 'package:doctor_care/shared/cubit/states.dart';
 import 'package:doctor_care/shared/themes/themes.dart';
@@ -12,23 +14,24 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'modules/auth/login_screen/login_screen.dart';
 
-
-Widget startScreenPets = HomeScreen();
-
+Widget startScreenPets = LoginScreen();
+// TODO: TO CHOOSE WHICH SCREEN TO SHOW FIRST IN START
 Future<void> startScreen() async {
   await Hive.initFlutter();
   final box = await Hive.openBox(boxName);
-  final access = await box.get(accessToken);
-  if(access!=null){
-    startScreenPets=LoginScreen();
+  final access = await box.get(accessTokenBox);
+  //bring token from storage
+  AppCubit.accessToken = access;
+  if (access != null) {
+    startScreenPets = HomeScreen();
   }
-
 }
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations(
-      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown],);
+    [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown],
+  );
   await EasyLocalization.ensureInitialized();
   await startScreen();
   await DioHelper.init();
@@ -80,6 +83,5 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
 
 // change mouse cursor to image every time we move the cursor

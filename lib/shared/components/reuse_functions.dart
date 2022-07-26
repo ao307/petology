@@ -39,7 +39,7 @@ void navigateTo({required BuildContext context, required Widget widget}) =>
           builder: (context) => widget,
         ),);
 
-void navigateAndFinish(
+Future<void> navigateAndFinish(
         {required BuildContext context, required Widget widget,}) =>
     Navigator.pushAndRemoveUntil(
         context,

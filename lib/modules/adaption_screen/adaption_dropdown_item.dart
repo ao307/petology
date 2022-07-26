@@ -23,6 +23,7 @@ class AdaptionDropDownItem extends StatelessWidget {
           width: 200,
           child: CustomDropdownExample(
             hintText: "",
+            errorText: "",
             jobRoleCtrl: TextEditingController(),
             items: items ?? [""],
           ),

@@ -1,5 +1,6 @@
 import 'package:doctor_care/modules/auth/login_screen/login_screen.dart';
 import 'package:doctor_care/modules/auth/signup_screen/signup_screen.dart';
+import 'package:doctor_care/shared/components/constants.dart';
 import 'package:doctor_care/shared/components/reuse_functions.dart';
 import 'package:doctor_care/shared/components/widgets.dart';
 import 'package:doctor_care/shared/cubit/cubit.dart';
@@ -7,6 +8,7 @@ import 'package:doctor_care/shared/cubit/states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+// TODO: APPBAR OF PETS
 // ignore: must_be_immutable
 class AppBarOfPets extends StatelessWidget {
   const AppBarOfPets({Key? key, this.login = true}) : super(key: key);
@@ -36,10 +38,18 @@ class AppBarOfPets extends StatelessWidget {
               Image.asset("assets/image/logo/bar.png"),
               Row(
                 children: cubit(context).buttonsTitleList,
-
               ),
-                const ButtonsOfAuthInBarLogin()
-
+              if (AppCubit.accessToken == null) const ButtonsOfAuthInBarLogin()
+              else
+                OutlinedButtonPets(
+                  onPressed: () {
+                    navigateAndFinish(context: context, widget: LoginScreen());
+                    cubit(context).logout();
+                  },
+                  text: 'sign out',
+                  backColor: Colors.transparent,
+                  txtColor: Colors.white,
+                ),
             ],
           ),
         );
@@ -69,7 +79,6 @@ class ButtonsOfAuthInBarLogin extends StatelessWidget {
         OutlinedButtonPets(
           onPressed: () {
             navigateTo(context: context, widget: LoginScreen());
-
           },
           text: 'login',
         ),
@@ -77,3 +86,5 @@ class ButtonsOfAuthInBarLogin extends StatelessWidget {
     );
   }
 }
+
+

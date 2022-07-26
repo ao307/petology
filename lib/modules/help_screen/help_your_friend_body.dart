@@ -49,6 +49,7 @@ class HelpYourFriendBody extends StatelessWidget {
           CustomDropdownExample(
             items:const ['Cat', 'Dog',],
             hintText: 'category',
+            errorText: '',
             jobRoleCtrl: TextEditingController(),
           ),
           const SizedBox(height: 20),
@@ -60,7 +61,7 @@ class HelpYourFriendBody extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           RoundedTextFormFieldPets(
-            textFormField: TextEditingController(),
+            textEditingFormField: TextEditingController(),
             hintText: "phone number",
           ),
           const SizedBox(height: 10),

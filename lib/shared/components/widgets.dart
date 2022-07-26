@@ -1,6 +1,9 @@
 import 'package:doctor_care/shared/components/reuse_functions.dart';
+import 'package:doctor_care/shared/cubit/cubit.dart';
+import 'package:doctor_care/shared/cubit/states.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../themes/colors.dart';
@@ -26,7 +29,7 @@ class TitleTFF extends StatelessWidget {
     this.textEditingController,
     this.keyboardType,
     this.validator,
-  required this.hint,
+    required this.hint,
     this.onTap,
     this.onlyRead,
     this.onEditingSubmitted,
@@ -141,48 +144,63 @@ class AppBarTxtButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: screenW(context) * .02),
-      child: Column(
-        children: [
-          TextButton(
-            onPressed: () {
-              if(currentIndex==0){
-                //navigateAndFinish(context: context, widget: widget!);
-                cubit(context).setCurrentIndex(currentIndex!);
-                Scrollable.ensureVisible(cubit(context).aboutKey.currentContext!);
+    return BlocConsumer<AppCubit,AppStates>(
+      listener: (context, state) {
 
-              }
-              else if(currentIndex==1){
-                //navigateAndFinish(context: context, widget: widget!);
-                Scrollable.ensureVisible(cubit(context).categoryKey.currentContext!);
-                cubit(context).setCurrentIndex(currentIndex!);}
-              else{
-                navigateAndFinish(context: context, widget: widget!);
-                cubit(context).setCurrentIndex(currentIndex!);
-              }
+      },
+      builder: (context,state){
+        return Padding(
+          padding: EdgeInsets.symmetric(horizontal: screenW(context) * .02),
+          child: Column(
+            children: [
+              TextButton(
+                onPressed: () {
+                  if (currentIndex == 0) {
+                   cubit(context).itemScrollController.scrollTo(
+                        index: 1,
+                        duration: const Duration(seconds: 1),
+                        curve: Curves.easeInOutCubic,);
+                  }
+                  else if (currentIndex == 1) {
+                    //navigateAndFinish(context: context, widget: widget!);
+                    cubit(context).itemScrollController.scrollTo(
+                      index: 2,
+                      duration: const Duration(seconds: 1),
+                      curve: Curves.easeInOutCubic,);
+                  }else if (currentIndex == 2) {
+                    //navigateAndFinish(context: context, widget: widget!);
+                    cubit(context).itemScrollController.scrollTo(
+                      index: 4,
+                      duration: const Duration(seconds: 1),
+                      curve: Curves.easeInOutCubic,);
+                  }
 
-
-            },
-            child: Text(
-              '$txt'.tr().toCapitalized(),
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 16,
+                  else {
+                    navigateAndFinish(context: context, widget: widget!);
+                  }
+                  cubit(context).setCurrentIndex(currentIndex!);
+                },
+                child: Text(
+                  '$txt'.tr().toCapitalized(),
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                  ),
+                ),
               ),
-            ),
+              if (selected)
+                Container(
+                  width: 90,
+                  height: 4,
+                  decoration: BoxDecoration(
+                    color: MyColors.cThirdColor,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+            ],
           ),
-          if (selected)
-            Container(
-              width: 90,
-              height: 4,
-              decoration: BoxDecoration(
-                color: MyColors.cThirdColor,
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
@@ -200,7 +218,7 @@ class OutlinedButtonPets extends StatelessWidget {
     required this.onPressed,
     this.backColor,
     this.txtColor,
-    this.border=true,
+    this.border = true,
   }) : super(key: key);
 
   @override
@@ -220,7 +238,7 @@ class OutlinedButtonPets extends StatelessWidget {
         side: MaterialStateProperty.all(
           BorderSide(
             width: 1.5,
-            color:border==true?Colors.white: Colors.transparent,
+            color: border == true ? Colors.white : Colors.transparent,
           ),
         ),
         backgroundColor: MaterialStateProperty.all(backColor ?? Colors.white),
@@ -287,13 +305,13 @@ class SVGString extends StatelessWidget {
 class RoundedTextFormFieldPets extends StatelessWidget {
   const RoundedTextFormFieldPets({
     Key? key,
-    required this.textFormField,
+    required this.textEditingFormField,
     this.validator,
     this.isPassword,
     this.maxLine,
     required this.hintText,
   }) : super(key: key);
-  final TextEditingController? textFormField;
+  final TextEditingController? textEditingFormField;
   final FormFieldValidator<String>? validator;
   final bool? isPassword;
   final String? hintText;
@@ -340,11 +358,11 @@ class RoundedTextFormFieldPets extends StatelessWidget {
             //   borderRadius: BorderRadius.circular(40.0),
             // ),
           ),
-          controller: textFormField,
+          controller: textEditingFormField,
           validator: validator,
           obscureText: isPassword ?? false,
           autovalidateMode: AutovalidateMode.onUserInteraction,
-          maxLines: maxLine??1,
+          maxLines: maxLine ?? 1,
         ),
       ),
     );
@@ -352,7 +370,8 @@ class RoundedTextFormFieldPets extends StatelessWidget {
 }
 
 class SeeMoreNtn extends StatelessWidget {
-  const SeeMoreNtn({Key? key, required this.text, required this.onPressed}) : super(key: key);
+  const SeeMoreNtn({Key? key, required this.text, required this.onPressed})
+      : super(key: key);
 
   final String text;
   final Function() onPressed;
@@ -364,7 +383,11 @@ class SeeMoreNtn extends StatelessWidget {
         elevation: MaterialStateProperty.all(0),
         alignment: Alignment.center,
         side: MaterialStateProperty.all(
-            const BorderSide(width: 4, color: MyColors.cThirdColor,),),
+          const BorderSide(
+            width: 4,
+            color: MyColors.cThirdColor,
+          ),
+        ),
         padding: MaterialStateProperty.all(
           const EdgeInsets.only(
             right: 75,
@@ -385,7 +408,10 @@ class SeeMoreNtn extends StatelessWidget {
       onPressed: onPressed,
       child: Text(
         text.tr().toCapitalized(),
-        style: const TextStyle(fontSize: 20.0,fontWeight: FontWeight.w700,),
+        style: const TextStyle(
+          fontSize: 20.0,
+          fontWeight: FontWeight.w700,
+        ),
       ),
     );
   }
