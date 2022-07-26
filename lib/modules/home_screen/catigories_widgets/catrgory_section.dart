@@ -5,8 +5,8 @@ import 'package:doctor_care/shared/themes/colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-class ThirdInHome extends StatelessWidget {
-  const ThirdInHome({
+class CategorySection extends StatelessWidget {
+  const CategorySection({
     Key? key,
     this.title,
     this.subtitle,
@@ -22,7 +22,7 @@ class ThirdInHome extends StatelessWidget {
       ),
       padding: const EdgeInsets.symmetric(
         horizontal: 100,
-        vertical: 100,
+        vertical: 50,
       ),
       child: Column(
         children: [

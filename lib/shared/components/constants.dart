@@ -1,5 +1,5 @@
 const boxName = "boxName";
-const accessToken = "accessToken";
+const accessTokenBox = "accessTokenBox";
 
 
 // list of countries short names

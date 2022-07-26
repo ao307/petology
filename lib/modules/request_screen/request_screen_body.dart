@@ -51,7 +51,7 @@ class RequestScreenBody extends StatelessWidget {
           ),
           //name
           RoundedTextFormFieldPets(
-            textFormField: TextEditingController(),
+            textEditingFormField: TextEditingController(),
             hintText: "name",
           ),
           // category
@@ -60,6 +60,7 @@ class RequestScreenBody extends StatelessWidget {
               'Cat',
               'Dog',
             ],
+            errorText: 'select category',
             hintText: 'category',
             jobRoleCtrl: TextEditingController(),
           ),
@@ -76,6 +77,7 @@ class RequestScreenBody extends StatelessWidget {
                       'Cat',
                       'Dog',
                     ],
+                    errorText: 'select category',
                     hintText: 'year',
                     jobRoleCtrl: TextEditingController(),
                   ),
@@ -87,6 +89,7 @@ class RequestScreenBody extends StatelessWidget {
                       'Cat',
                       'Dog',
                     ],
+                    errorText:  'select category',
                     hintText: 'months',
                     jobRoleCtrl: TextEditingController(),
                   ),
@@ -106,6 +109,7 @@ class RequestScreenBody extends StatelessWidget {
                       'Cat',
                       'Dog',
                     ],
+                    errorText: 'select category',
                     hintText: 'size',
                     jobRoleCtrl: TextEditingController(),
                   ),
@@ -117,6 +121,7 @@ class RequestScreenBody extends StatelessWidget {
                       'Cat',
                       'Dog',
                     ],
+                    errorText: 'select category',
                     hintText: 'breed',
                     jobRoleCtrl: TextEditingController(),
                   ),
@@ -136,6 +141,7 @@ class RequestScreenBody extends StatelessWidget {
                       'Cat',
                       'Dog',
                     ],
+                    errorText: 'select category',
                     hintText: 'hair length',
                     jobRoleCtrl: TextEditingController(),
                   ),
@@ -147,6 +153,7 @@ class RequestScreenBody extends StatelessWidget {
                       'Cat',
                       'Dog',
                     ],
+                    errorText: 'select category',
                     hintText: 'care & behavior',
                     jobRoleCtrl: TextEditingController(),
                   ),
@@ -166,6 +173,7 @@ class RequestScreenBody extends StatelessWidget {
                       'Cat',
                       'Dog',
                     ],
+                      errorText: 'select category',
                     hintText: 'house trained',
                     jobRoleCtrl: TextEditingController(),
                   ),
@@ -177,6 +185,7 @@ class RequestScreenBody extends StatelessWidget {
                       'Cat',
                       'Dog',
                     ],
+                    errorText: 'select category',
                     hintText: 'color',
                     jobRoleCtrl: TextEditingController(),
                   ),
@@ -194,7 +203,7 @@ class RequestScreenBody extends StatelessWidget {
           const SizedBox(height: 20),
           //phone number
           RoundedTextFormFieldPets(
-            textFormField: TextEditingController(),
+            textEditingFormField: TextEditingController(),
             hintText: "phone number",
             validator: (value) {
               return validateMobile(value!);
@@ -203,7 +212,7 @@ class RequestScreenBody extends StatelessWidget {
           const SizedBox(height: 10),
           // description
           RoundedTextFormFieldPets(
-            textFormField: TextEditingController(),
+            textEditingFormField: TextEditingController(),
             hintText: "description",
             maxLine: 6,
           ),

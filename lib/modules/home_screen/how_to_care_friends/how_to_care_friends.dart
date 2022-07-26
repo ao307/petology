@@ -1,3 +1,4 @@
+import 'package:doctor_care/models/home_model/how_to_care_friends.dart';
 import 'package:doctor_care/modules/home_screen/how_to_care_friends/care_items_in_home.dart';
 import 'package:doctor_care/shared/components/reuse_functions.dart';
 import 'package:doctor_care/shared/themes/colors.dart';
@@ -8,8 +9,10 @@ class HTCFriends extends StatelessWidget {
   const HTCFriends({
     Key? key,
     this.title,
+    this.howToCareFriendsList,
   }) : super(key: key);
   final String? title;
+  final List<HowToCareFriends>? howToCareFriendsList;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +22,7 @@ class HTCFriends extends StatelessWidget {
       ),
       padding: const EdgeInsets.symmetric(
         horizontal: 100,
-        vertical: 100,
+        vertical: 50,
       ),
       child: Column(
         children: [
@@ -38,9 +41,9 @@ class HTCFriends extends StatelessWidget {
             crossAxisAlignment: WrapCrossAlignment.center,
             alignment: WrapAlignment.center,
             spacing: 80,
-            children: List.generate(9, (index) => CIIHome(
-              title: '$index',
-              imageLink: 'assets/image/main_images/dog_in_home.png',
+            children: List.generate(howToCareFriendsList!.length, (index) => CIIHome(
+              title: '${howToCareFriendsList![index].title}',
+              imageLink: '${howToCareFriendsList![index].imageUrl}',
             ),
             ),
           ),

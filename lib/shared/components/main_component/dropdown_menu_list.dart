@@ -13,12 +13,14 @@ class CustomDropdownExample extends StatefulWidget {
     required this.items,
     required this.hintText,
     required this.jobRoleCtrl,
-     this.onChanged,
+    required this.errorText,
+    this.onChanged,
   }) : super(key: key);
   final List<String> items;
-  final  TextEditingController jobRoleCtrl;
+  final TextEditingController jobRoleCtrl;
   final Function(String)? onChanged;
   final String hintText;
+  final String errorText;
 
 
   @override
@@ -53,7 +55,8 @@ class _CustomDropdownExampleState extends State<CustomDropdownExample> {
         ),
         borderSide: BorderSide.none,
         onChanged: widget.onChanged,
-
+        errorText:widget.errorText.tr().toCapitalized(),
+        errorBorderSide: BorderSide.none,
       ),
     );
   }

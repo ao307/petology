@@ -1,6 +1,8 @@
 // ignore_for_file: type_annotate_public_apis
 
 import 'package:dio/dio.dart';
+import 'package:doctor_care/shared/components/reuse_functions.dart';
+import 'package:doctor_care/shared/cubit/cubit.dart';
 
 // ignore: avoid_classes_with_only_static_members
 class DioHelper {
@@ -8,17 +10,25 @@ class DioHelper {
 
   // ignore: always_declare_return_types
   static init() {
-    dio = Dio(BaseOptions(
-      baseUrl: 'https://gradproject-hmis-app.herokuapp.com/api/v1/',
-      receiveDataWhenStatusError: true,
-    ),);
+    dio = Dio(
+      BaseOptions(
+        baseUrl: 'https://petology.orangedigitalcenteregypt.com/',
+        receiveDataWhenStatusError: true,
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          "Authorization": "Bearer ${AppCubit.accessToken}",
+        },
+      ),
+    );
   }
 
-  static Future<Response> getData(
-      {required String url,
-        Map<String, dynamic>? query,
-        String lang = 'en',
-        String? token,}) async {
+  static Future<Response> getData({
+    required String url,
+    Map<String, dynamic>? query,
+    String lang = 'en',
+    String? token,
+  }) async {
     dio!.options.headers = {
       'lang': lang,
       'Authorization': "Bearer $token",
@@ -27,34 +37,28 @@ class DioHelper {
     return dio!.get(url, queryParameters: query);
   }
 
-  static Future<Response> postData(
-      {required String endPoint,
-        Map<String, dynamic>? query,
-        required Map<String, dynamic>? data,
-        String lang = 'en',
-        String? token = 'null',}) async {
-    dio!.options.headers = {
-      'lang': lang,
-      'Authorization': "Bearer $token",
-      'Content-Type': 'application/json'
-    };
+  static Future<Response> postData({
+    required String endPoint,
+    Map<String, dynamic>? query,
+    required Map<String, dynamic>? data,
+    String lang = 'en',
+  }) async {
+    dio!.options.headers = {'lang': lang, 'Content-Type': 'application/json'};
     return dio!.post(endPoint, queryParameters: query, data: data);
   }
 
-
-  static Future<Response> putData(
-      {required String endPoint,
-        Map<String, dynamic>? query,
-        required data,
-        String lang = 'en',
-        String? boundary,
-        String? token = 'null',}) async {
+  static Future<Response> putData({
+    required String endPoint,
+    Map<String, dynamic>? query,
+    required data,
+    String lang = 'en',
+    String? boundary,
+  }) async {
     dio!.options.headers = {
       'lang': lang,
-      'Authorization': "Bearer $token",
       'Content-Type': 'multipart/form-data'
     };
-    return  dio!.put(endPoint, queryParameters: query, data: data);
+    return dio!.put(endPoint, queryParameters: query, data: data);
   }
 }
 
@@ -64,56 +68,47 @@ class DioPay {
 
   // ignore: always_declare_return_types
   static init() {
-    dio = Dio(BaseOptions(
-      baseUrl: 'https://gradproject-hmis-app.herokuapp.com/api/v1/',
-      receiveDataWhenStatusError: true,
-    ),);
+    dio = Dio(
+      BaseOptions(
+        baseUrl: 'https://gradproject-hmis-app.herokuapp.com/api/v1/',
+        receiveDataWhenStatusError: true,
+      ),
+    );
   }
 
-  static Future<Response> getData(
-      {required String url,
-        Map<String, dynamic>? query,
-        String lang = 'en',
-        String? token,}) async {
-    dio!.options.headers = {
-      'lang': lang,
-      'Authorization': "Bearer $token",
-      'Content-Type': 'application/json'
-    };
+  static Future<Response> getData({
+    required String url,
+    Map<String, dynamic>? query,
+    String lang = 'en',
+  }) async {
+    dio!.options.headers = {'lang': lang, 'Content-Type': 'application/json'};
     return dio!.get(url, queryParameters: query);
   }
 
-  static Future<Response> postData(
-      {required String endPoint,
-        Map<String, dynamic>? query,
-        required Map<String, dynamic>? data,
-        String lang = 'en',
-        String? token = 'null',}) async {
-    dio!.options.headers = {
-      'lang': lang,
-      'Authorization': "Bearer $token",
-      'Content-Type': 'application/json'
-    };
+  static Future<Response> postData({
+    required String endPoint,
+    Map<String, dynamic>? query,
+    required Map<String, dynamic>? data,
+    String lang = 'en',
+  }) async {
+    dio!.options.headers = {'lang': lang, 'Content-Type': 'application/json'};
     return dio!.post(endPoint, queryParameters: query, data: data);
   }
 
-
-  static Future<Response> putData(
-      {required String endPoint,
-        Map<String, dynamic>? query,
-        required data,
-        String lang = 'en',
-        String? boundary,
-        String? token = 'null',}) async {
+  static Future<Response> putData({
+    required String endPoint,
+    Map<String, dynamic>? query,
+    required data,
+    String lang = 'en',
+    String? boundary,
+  }) async {
     dio!.options.headers = {
       'lang': lang,
-      'Authorization': "Bearer $token",
       'Content-Type': 'multipart/form-data'
     };
-    return  dio!.put(endPoint, queryParameters: query, data: data);
+    return dio!.put(endPoint, queryParameters: query, data: data);
   }
 }
-
 
 // https://newsapi.org/
 // v2/everything

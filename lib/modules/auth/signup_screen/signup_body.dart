@@ -1,3 +1,4 @@
+import 'package:doctor_care/modules/auth/login_screen/login_screen.dart';
 import 'package:doctor_care/shared/components/constants.dart';
 import 'package:doctor_care/shared/components/main_component/dropdown_menu_list.dart';
 import 'package:doctor_care/shared/components/reuse_functions.dart';
@@ -71,55 +72,48 @@ class SignUpBody extends StatelessWidget {
             ),
             RoundedTextFormFieldPets(
               hintText: 'first name',
-              textFormField: cubit(context).firstNameSignUp,
+              textEditingFormField: cubit(context).firstNameSignUp,
               validator: (value) {
                 return validateName(value);
               },
             ),
             RoundedTextFormFieldPets(
               hintText: 'last name',
-              textFormField: cubit(context).lastNameSignUp,
+              textEditingFormField: cubit(context).lastNameSignUp,
               validator: (value) {
                 return validateName(value);
               },
             ),
             RoundedTextFormFieldPets(
               hintText: 'email',
-              textFormField: cubit(context).emailSignUp,
+              textEditingFormField: cubit(context).emailSignUp,
               validator: (value) {
                 return validateEmail(value);
               },
             ),
             RoundedTextFormFieldPets(
               hintText: 'password',
-              textFormField: cubit(context).passwordSignUp,
+              textEditingFormField: cubit(context).passwordSignUp,
               validator: (value) {
                 return validatePassword(value);
               },
               isPassword: true,
             ),
             RoundedTextFormFieldPets(
-              hintText: 're-enter password',
-              textFormField: cubit(context).reWritePasswordSignUp,
+              hintText: 'phone number',
+              textEditingFormField: cubit(context).phoneNumber,
               validator: (value) {
-                if (value!.isEmpty) {
-                  return 'enter password'.tr().toCapitalized();
-                } else if (cubit(context).reWritePasswordSignUp.text !=
-                    cubit(context).passwordSignUp.text) {
-                  return 'password does not match'.tr().toCapitalized();
-                }
-                return null;
+                return validateMobile(value!);
               },
-              isPassword: true,
             ),
             // country
             CustomDropdownExample(
               items: countriesShortNamesList,
-              jobRoleCtrl: cubit(context).countrySignUp,
+              jobRoleCtrl: cubit(context).countrySignUp!,
+              errorText: 'country is required',
               hintText: 'country',
-
               onChanged: (value) {
-                printFullText(cubit(context).countrySignUp.text);
+                printFullText(cubit(context).countrySignUp!.text);
               },
             ),
             const SizedBox(
@@ -131,18 +125,22 @@ class SignUpBody extends StatelessWidget {
               child: OutlinedButtonPets(
                 text: 'sign up'.tr().toCapitalized(),
                 onPressed: () {
-                  if(cubit(context).formKeySignUp.currentState!.validate()){
+                  if (cubit(context).formKeySignUp.currentState!.validate()&&cubit(context).countrySignUp !=null) {
+                    cubit(context).signUp();
                   }
                 },
                 backColor: MyColors.cPrimary,
                 txtColor: MyColors.cThirdColor,
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 10.0),
+             Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10.0),
               child: TextRichBtn(
                 text1: "already have an account?",
                 text2: "login",
+                onPressed: () {
+                  navigateAndFinish(context: context, widget: LoginScreen());
+                },
               ),
             ),
           ],

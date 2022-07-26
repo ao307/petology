@@ -8,8 +8,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../shared/cubit/cubit.dart';
 
-class HelpYourFriend extends StatelessWidget {
-  HelpYourFriend({Key? key}) : super(key: key);
+class HelpYourFriendScreen extends StatelessWidget {
+  HelpYourFriendScreen({Key? key}) : super(key: key);
 
   final formKey = GlobalKey<FormState>();
 
