@@ -117,6 +117,7 @@ class SignUpBody extends StatelessWidget {
               items: countriesShortNamesList,
               jobRoleCtrl: cubit(context).countrySignUp,
               hintText: 'country',
+
               onChanged: (value) {
                 printFullText(cubit(context).countrySignUp.text);
               },

@@ -1,3 +1,5 @@
+import 'package:doctor_care/modules/auth/login_screen/login_screen.dart';
+import 'package:doctor_care/modules/auth/signup_screen/signup_screen.dart';
 import 'package:doctor_care/shared/components/reuse_functions.dart';
 import 'package:doctor_care/shared/components/widgets.dart';
 import 'package:doctor_care/shared/cubit/cubit.dart';
@@ -34,11 +36,10 @@ class AppBarOfPets extends StatelessWidget {
               Image.asset("assets/image/logo/bar.png"),
               Row(
                 children: cubit(context).buttonsTitleList,
+
               ),
-              if (login == true)
                 const ButtonsOfAuthInBarLogin()
-              else
-                const ButtonsOfAuthInBarSignUp(),
+
             ],
           ),
         );
@@ -55,7 +56,9 @@ class ButtonsOfAuthInBarLogin extends StatelessWidget {
     return Row(
       children: [
         OutlinedButtonPets(
-          onPressed: () {},
+          onPressed: () {
+            navigateTo(context: context, widget: SignUpScreen());
+          },
           text: 'sign up',
           backColor: Colors.transparent,
           txtColor: Colors.white,
@@ -64,33 +67,11 @@ class ButtonsOfAuthInBarLogin extends StatelessWidget {
           width: 20,
         ),
         OutlinedButtonPets(
-          onPressed: () {},
-          text: 'login',
-        ),
-      ],
-    );
-  }
-}
+          onPressed: () {
+            navigateTo(context: context, widget: LoginScreen());
 
-class ButtonsOfAuthInBarSignUp extends StatelessWidget {
-  const ButtonsOfAuthInBarSignUp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        OutlinedButtonPets(
-          onPressed: () {},
-          text: 'sign up',
-        ),
-        const SizedBox(
-          width: 20,
-        ),
-        OutlinedButtonPets(
-          onPressed: () {},
+          },
           text: 'login',
-          backColor: Colors.transparent,
-          txtColor: Colors.white,
         ),
       ],
     );

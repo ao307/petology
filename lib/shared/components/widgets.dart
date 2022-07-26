@@ -147,8 +147,22 @@ class AppBarTxtButton extends StatelessWidget {
         children: [
           TextButton(
             onPressed: () {
-              navigateTo(context: context, widget: widget!);
-              cubit(context).setCurrentIndex(currentIndex!);
+              if(currentIndex==0){
+                //navigateAndFinish(context: context, widget: widget!);
+                cubit(context).setCurrentIndex(currentIndex!);
+                Scrollable.ensureVisible(cubit(context).aboutKey.currentContext!);
+
+              }
+              else if(currentIndex==1){
+                //navigateAndFinish(context: context, widget: widget!);
+                Scrollable.ensureVisible(cubit(context).categoryKey.currentContext!);
+                cubit(context).setCurrentIndex(currentIndex!);}
+              else{
+                navigateAndFinish(context: context, widget: widget!);
+                cubit(context).setCurrentIndex(currentIndex!);
+              }
+
+
             },
             child: Text(
               '$txt'.tr().toCapitalized(),
@@ -330,7 +344,7 @@ class RoundedTextFormFieldPets extends StatelessWidget {
           validator: validator,
           obscureText: isPassword ?? false,
           autovalidateMode: AutovalidateMode.onUserInteraction,
-          maxLines: maxLine,
+          maxLines: maxLine??1,
         ),
       ),
     );
