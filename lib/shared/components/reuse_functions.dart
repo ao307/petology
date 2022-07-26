@@ -82,7 +82,20 @@ String? validateName(String? value) {
     return null;
   }
 }
-
+String? validateMobile(String value) {
+  const String pattern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
+  final RegExp regExp = RegExp(pattern);
+  if (value.isEmpty) {
+    return 'Please enter mobile number';
+  }
+  else if(value.length!=11){
+    return 'Please enter valid mobile number';
+  }
+  else if (!regExp.hasMatch(value)) {
+    return 'Please enter valid mobile number';
+  }
+  return null;
+}
 // validate password
 String? validatePassword(String? value) {
   if (value == null || value.isEmpty) {

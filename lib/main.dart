@@ -1,4 +1,3 @@
-import 'package:doctor_care/modules/help_screen/help_your_friend.dart';
 import 'package:doctor_care/shared/api/remote/dio_helper.dart';
 import 'package:doctor_care/shared/bloc_observer.dart';
 import 'package:doctor_care/shared/components/constants.dart';
@@ -13,7 +12,7 @@ import 'package:hive_flutter/adapters.dart';
 import 'modules/auth/login_screen/login_screen.dart';
 
 
-Widget startScreenPets = HelpYourFriend();
+Widget startScreenPets = LoginScreen();
 
 Future<void> startScreen() async {
   await Hive.initFlutter();

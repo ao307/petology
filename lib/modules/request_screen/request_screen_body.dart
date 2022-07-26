@@ -12,7 +12,9 @@ class RequestScreenBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: screenW(context) * 0.32, vertical: screenH(context) * 0.05),
+      margin: EdgeInsets.symmetric(
+          horizontal: screenW(context) * 0.32,
+          vertical: screenH(context) * 0.05,),
       padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 40),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(88.0),
@@ -31,8 +33,9 @@ class RequestScreenBody extends StatelessWidget {
       ),
       child: Column(
         children: [
+          //top title text
           Text(
-            'help your friend'.tr().toCapitalized(),
+            'request'.tr().toCapitalized(),
             style: const TextStyle(
               height: 1,
               fontSize: 40.0,
@@ -46,12 +49,142 @@ class RequestScreenBody extends StatelessWidget {
               width: 100,
             ),
           ),
+          //name
+          RoundedTextFormFieldPets(
+            textFormField: TextEditingController(),
+            hintText: "name",
+          ),
+          // category
           CustomDropdownExample(
-            items:const ['Cat', 'Dog',],
+            items: const [
+              'Cat',
+              'Dog',
+            ],
             hintText: 'category',
             jobRoleCtrl: TextEditingController(),
           ),
           const SizedBox(height: 20),
+          // TODO: year and month dropdown
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: CustomDropdownExample(
+                    items: const [
+                      'Cat',
+                      'Dog',
+                    ],
+                    hintText: 'year',
+                    jobRoleCtrl: TextEditingController(),
+                  ),
+                ),
+                const SizedBox(width: 20),
+                Expanded(
+                  child: CustomDropdownExample(
+                    items: const [
+                      'Cat',
+                      'Dog',
+                    ],
+                    hintText: 'months',
+                    jobRoleCtrl: TextEditingController(),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          // TODO: size and breed dropdown
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: CustomDropdownExample(
+                    items: const [
+                      'Cat',
+                      'Dog',
+                    ],
+                    hintText: 'size',
+                    jobRoleCtrl: TextEditingController(),
+                  ),
+                ),
+                const SizedBox(width: 20),
+                Expanded(
+                  child: CustomDropdownExample(
+                    items: const [
+                      'Cat',
+                      'Dog',
+                    ],
+                    hintText: 'breed',
+                    jobRoleCtrl: TextEditingController(),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          // TODO: hair length and care & behavior dropdown
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: CustomDropdownExample(
+                    items: const [
+                      'Cat',
+                      'Dog',
+                    ],
+                    hintText: 'hair length',
+                    jobRoleCtrl: TextEditingController(),
+                  ),
+                ),
+                const SizedBox(width: 20),
+                Expanded(
+                  child: CustomDropdownExample(
+                    items: const [
+                      'Cat',
+                      'Dog',
+                    ],
+                    hintText: 'care & behavior',
+                    jobRoleCtrl: TextEditingController(),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          // TODO: house trained and color dropdown
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: CustomDropdownExample(
+                    items: const [
+                      'Cat',
+                      'Dog',
+                    ],
+                    hintText: 'house trained',
+                    jobRoleCtrl: TextEditingController(),
+                  ),
+                ),
+                const SizedBox(width: 20),
+                Expanded(
+                  child: CustomDropdownExample(
+                    items: const [
+                      'Cat',
+                      'Dog',
+                    ],
+                    hintText: 'color',
+                    jobRoleCtrl: TextEditingController(),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          //location
           const TitleTFF(
             title: 'detect your current location',
             hint: "location",
@@ -59,11 +192,23 @@ class RequestScreenBody extends StatelessWidget {
             suffixIcon: Icon(Icons.location_on, color: MyColors.cMainColor),
           ),
           const SizedBox(height: 20),
+          //phone number
           RoundedTextFormFieldPets(
             textFormField: TextEditingController(),
             hintText: "phone number",
+            validator: (value) {
+              return validateMobile(value!);
+            },
           ),
           const SizedBox(height: 10),
+          // description
+          RoundedTextFormFieldPets(
+            textFormField: TextEditingController(),
+            hintText: "description",
+            maxLine: 6,
+          ),
+          const SizedBox(height: 10),
+          //send button
           SizedBox(
             width: double.infinity,
             height: screenH(context) * 0.08,
@@ -75,20 +220,8 @@ class RequestScreenBody extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20),
-          SizedBox(
-            width: double.infinity,
-            height: screenH(context) * 0.08,
-            child: OutlinedButtonPets(
-              text: 'call'.tr().toCapitalized(),
-              onPressed: () {},
-              backColor: MyColors.cThirdColor,
-
-            ),
-          ),
         ],
       ),
     );
   }
 }
-
-

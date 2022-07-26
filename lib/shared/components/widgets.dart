@@ -1,5 +1,4 @@
 import 'package:doctor_care/shared/components/reuse_functions.dart';
-import 'package:doctor_care/shared/components/svg_images.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -179,6 +178,7 @@ class OutlinedButtonPets extends StatelessWidget {
   final Function() onPressed;
   final Color? backColor;
   final Color? txtColor;
+  final bool? border;
 
   const OutlinedButtonPets({
     Key? key,
@@ -186,6 +186,7 @@ class OutlinedButtonPets extends StatelessWidget {
     required this.onPressed,
     this.backColor,
     this.txtColor,
+    this.border=true,
   }) : super(key: key);
 
   @override
@@ -203,9 +204,9 @@ class OutlinedButtonPets extends StatelessWidget {
           ),
         ),
         side: MaterialStateProperty.all(
-          const BorderSide(
+          BorderSide(
             width: 1.5,
-            color: Colors.white,
+            color:border==true?Colors.white: Colors.transparent,
           ),
         ),
         backgroundColor: MaterialStateProperty.all(backColor ?? Colors.white),
@@ -275,12 +276,14 @@ class RoundedTextFormFieldPets extends StatelessWidget {
     required this.textFormField,
     this.validator,
     this.isPassword,
+    this.maxLine,
     required this.hintText,
   }) : super(key: key);
   final TextEditingController? textFormField;
   final FormFieldValidator<String>? validator;
   final bool? isPassword;
   final String? hintText;
+  final int? maxLine;
 
   @override
   Widget build(BuildContext context) {
@@ -327,6 +330,7 @@ class RoundedTextFormFieldPets extends StatelessWidget {
           validator: validator,
           obscureText: isPassword ?? false,
           autovalidateMode: AutovalidateMode.onUserInteraction,
+          maxLines: maxLine,
         ),
       ),
     );
