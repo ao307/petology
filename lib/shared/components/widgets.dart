@@ -1,4 +1,5 @@
 import 'package:doctor_care/shared/components/reuse_functions.dart';
+import 'package:doctor_care/shared/components/svg_images.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -6,6 +7,122 @@ import 'package:flutter_svg/svg.dart';
 import '../themes/colors.dart';
 
 //for all screens
+class TitleTFF extends StatelessWidget {
+  final String? title;
+  final String? subTitle;
+  final String? hint;
+  final Function()? onTap;
+  final ValueChanged? onEditingSubmitted;
+  final TextEditingController? textEditingController;
+  final TextInputType? keyboardType;
+  final FormFieldValidator? validator;
+  final bool? onlyRead;
+  final int? maxLength;
+  final Widget? suffixIcon;
+
+  const TitleTFF({
+    Key? key,
+    this.title,
+    this.subTitle,
+    this.textEditingController,
+    this.keyboardType,
+    this.validator,
+  required this.hint,
+    this.onTap,
+    this.onlyRead,
+    this.onEditingSubmitted,
+    this.maxLength,
+    this.suffixIcon,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        TextOfNav(title: title, subTitle: subTitle),
+        const SizedBox(
+          height: 8,
+        ),
+        Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20.0),
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.16),
+                offset: const Offset(0, 3.0),
+                blurRadius: 6.0,
+              ),
+            ],
+          ),
+          child: TextFormField(
+            readOnly: onlyRead ?? false,
+            onTap: onTap,
+            maxLength: maxLength,
+            onFieldSubmitted: onEditingSubmitted,
+            validator: validator,
+            keyboardType: keyboardType,
+            controller: textEditingController,
+            decoration: InputDecoration(
+              hintText: '$hint'.tr().toCapitalized(),
+              hintStyle: const TextStyle(
+                fontSize: 16.0,
+                fontWeight: FontWeight.w700,
+                color: MyColors.c5Color,
+              ),
+              contentPadding: const EdgeInsets.symmetric(
+                horizontal: 20.0,
+                vertical: 10.0,
+              ),
+              border: InputBorder.none,
+              suffixIcon: suffixIcon,
+            ),
+          ),
+        )
+      ],
+    );
+  }
+}
+
+class TextOfNav extends StatelessWidget {
+  final String? title;
+  final String? subTitle;
+
+  const TextOfNav({Key? key, this.title, this.subTitle}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsetsDirectional.only(start: 12.0),
+      child: Row(
+        children: [
+          Text(
+            title!.tr().toCapitalized(),
+            style: const TextStyle(
+              fontSize: 16.0,
+              letterSpacing: 0.49999998092651365,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          if (subTitle != null)
+            Padding(
+              padding: const EdgeInsetsDirectional.only(start: 6.0),
+              child: Text(
+                subTitle!.tr(),
+                style: TextStyle(
+                  fontSize: 12.0,
+                  color: MyColors.cUnSelectedIconLight.withOpacity(0.5),
+                  letterSpacing: 0.3999999847412109,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+}
 
 // ignore: must_be_immutable
 class AppBarTxtButton extends StatelessWidget {
@@ -187,6 +304,7 @@ class RoundedTextFormFieldPets extends StatelessWidget {
             hintStyle: const TextStyle(
               fontSize: 16.0,
               fontWeight: FontWeight.w700,
+              color: MyColors.c5Color,
             ),
             contentPadding: const EdgeInsets.symmetric(
               horizontal: 20.0,
