@@ -45,7 +45,8 @@ class AppCubit extends Cubit<AppStates> {
   TextEditingController emailSignUp = TextEditingController();
   TextEditingController passwordSignUp = TextEditingController();
   TextEditingController reWritePasswordSignUp = TextEditingController();
-  
+  TextEditingController countrySignUp = TextEditingController();
+
 
 
 

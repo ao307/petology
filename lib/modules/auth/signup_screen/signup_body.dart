@@ -1,3 +1,5 @@
+import 'package:doctor_care/shared/components/constants.dart';
+import 'package:doctor_care/shared/components/main_component/dropdown_menu_list.dart';
 import 'package:doctor_care/shared/components/reuse_functions.dart';
 import 'package:doctor_care/shared/components/svg_images.dart';
 import 'package:doctor_care/shared/components/widgets.dart';
@@ -111,6 +113,14 @@ class SignUpBody extends StatelessWidget {
               isPassword: true,
             ),
             // country
+            CustomDropdownExample(
+              items: countriesShortNamesList,
+              jobRoleCtrl: cubit(context).countrySignUp,
+              hintText: 'country',
+              onChanged: (value) {
+                printFullText(cubit(context).countrySignUp.text);
+              },
+            ),
             const SizedBox(
               height: 20.0,
             ),
@@ -121,7 +131,6 @@ class SignUpBody extends StatelessWidget {
                 text: 'sign up'.tr().toCapitalized(),
                 onPressed: () {
                   if(cubit(context).formKeySignUp.currentState!.validate()){
-
                   }
                 },
                 backColor: MyColors.cPrimary,
