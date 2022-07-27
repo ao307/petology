@@ -43,11 +43,17 @@ class RequestScreenBody extends StatelessWidget {
             ),
           ),
           // image
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 40.0),
-            child: SVGString(
-              cameraSvg,
-              width: 100,
+          InkWell(
+            onTap: () {
+              cubit(context).fetchRequestImages();
+            },
+            child: const Padding(
+              padding: EdgeInsets.symmetric(vertical: 40.0),
+              child: SVGString(
+                cameraSvg,
+                width: 100,
+              ),
+
             ),
           ),
           //name

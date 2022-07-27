@@ -14,7 +14,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'modules/auth/login_screen/login_screen.dart';
 
-Widget startScreenPets = LoginScreen();
+Widget startScreenPets = HomeScreen();
 // TODO: TO CHOOSE WHICH SCREEN TO SHOW FIRST IN START
 Future<void> startScreen() async {
   await Hive.initFlutter();
