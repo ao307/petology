@@ -1,4 +1,3 @@
-import 'package:doctor_care/models/pets_model.dart';
 import 'package:doctor_care/shared/components/main_component/appbar_pets.dart';
 import 'package:doctor_care/shared/components/main_component/footer_pets.dart';
 import 'package:doctor_care/shared/components/responsive.dart';
@@ -67,7 +66,7 @@ class HowToFeedScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'how you feed Your Dog?'.tr().toCapitalized(),
+                              'how you feed Your Animal?'.tr().toCapitalized(),
                               style: const TextStyle(
                                 fontSize: 70.0,
                                 color: Color(0xFF492F24),

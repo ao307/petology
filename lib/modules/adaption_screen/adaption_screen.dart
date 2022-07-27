@@ -153,6 +153,6 @@ class AdaptionScreen extends StatelessWidget {
               );
             },
           );
-        });
+        },);
   }
 }

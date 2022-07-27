@@ -1,15 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:doctor_care/models/pets_model.dart';
 import 'package:doctor_care/modules/home_screen/about_animal_screen/about_animal_screen.dart';
-import 'package:doctor_care/modules/how_to_feed_your_animal/how_to_feed_screen.dart';
 import 'package:doctor_care/shared/components/reuse_functions.dart';
 import 'package:doctor_care/shared/components/widgets.dart';
-import 'package:doctor_care/shared/cubit/cubit.dart';
-import 'package:doctor_care/shared/cubit/states.dart';
 import 'package:doctor_care/shared/themes/colors.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 //TODO: GRID VIEW ADAPTION
 class GVAdaption extends StatelessWidget {
