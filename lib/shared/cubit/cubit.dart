@@ -3,6 +3,7 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
+import 'package:doctor_care/models/filters_model.dart';
 import 'package:doctor_care/models/home_model/about_model.dart';
 import 'package:doctor_care/models/home_model/first_section_model.dart';
 import 'package:doctor_care/models/home_model/footer_model.dart';
@@ -284,7 +285,6 @@ class AppCubit extends Cubit<AppStates> {
   TextEditingController? phoneNumberRequestHelp = TextEditingController();
 
   Future<void> uploadRequestHelp() async {
-    printFullText(accessToken!);
     emit(UploadRequestLoadingState());
     await DioHelper.postData(
       endPoint: requestHelpEP,
@@ -312,6 +312,23 @@ class AppCubit extends Cubit<AppStates> {
         }
         printFullText(onError.toString());
         emit(UploadRequestErrorState(onError.toString()));
+      },
+    );
+  }
+
+  // TODO: GET FILTERS FUNCTION
+  FiltersModel? filtersModel;
+  Future<void> getFilters(int id) async {
+    emit(GetFiltersLoadingState());
+    await DioHelper.getData(
+      url: "/pets/filters/$id",
+    ).then((value) {
+      filtersModel = FiltersModel.fromJson(value.data);
+      emit(GetFiltersSuccessState());
+    }).catchError(
+      (onError) {
+        printFullText(onError.toString());
+        emit(GetFiltersErrorState(onError.toString()));
       },
     );
   }

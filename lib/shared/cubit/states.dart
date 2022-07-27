@@ -36,3 +36,16 @@ class UploadRequestErrorState extends AppStates {
 
   UploadRequestErrorState(this.error);
 }
+
+
+
+// Get Filters REQUEST
+class GetFiltersLoadingState extends AppStates {}
+
+class GetFiltersSuccessState extends AppStates {}
+
+class GetFiltersErrorState extends AppStates {
+  final String error;
+
+  GetFiltersErrorState(this.error);
+}

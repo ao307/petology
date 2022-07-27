@@ -73,6 +73,7 @@ class HomeScreen extends StatelessWidget {
                             const CategorySection(
                               title: "Lets get this right ....",
                               subtitle: "What kind of friend you looking for?",
+
                             ), //2
                             const OFLForHouse(),
                             HTCFriends(

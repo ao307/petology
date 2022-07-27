@@ -30,8 +30,8 @@ class DioHelper {
   }) async {
     dio!.options.headers = {
       'lang': lang,
-      'Authorization': "Bearer $token",
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      "Authorization": "Bearer ${AppCubit.accessToken}",
     };
     return dio!.get(url, queryParameters: query);
   }
@@ -58,7 +58,8 @@ class DioHelper {
   }) async {
     dio!.options.headers = {
       'lang': lang,
-      'Content-Type': 'multipart/form-data'
+      'Content-Type': 'multipart/form-data',
+      "Authorization": "Bearer ${AppCubit.accessToken}",
     };
     return dio!.put(endPoint, queryParameters: query, data: data);
   }
