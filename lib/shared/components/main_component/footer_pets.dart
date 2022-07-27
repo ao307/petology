@@ -61,7 +61,7 @@ class FooterPets extends StatelessWidget {
                         // second column
                         FooterItems(
                           topTitle: 'we are waiting you'.tr().toCapitalized(),
-                          icon1: phoneSvg,
+                          icon1: locationSvg,
                           title1: '${cubit(context).footerModel!.location}'
                               .tr()
                               .toCapitalized(),
