@@ -19,10 +19,7 @@ import 'package:doctor_care/shared/cubit/states.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-<<<<<<< Updated upstream
-=======
 import 'package:geolocator/geolocator.dart';
->>>>>>> Stashed changes
 import 'package:hive/hive.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
@@ -224,8 +221,6 @@ class AppCubit extends Cubit<AppStates> {
       },
     );
   }
-<<<<<<< Updated upstream
-=======
 
   // TODO: GET CURRENT LON AND LAT FUNCTIONS
 
@@ -305,5 +300,4 @@ class AppCubit extends Cubit<AppStates> {
       },
     );
   }
->>>>>>> Stashed changes
 }
