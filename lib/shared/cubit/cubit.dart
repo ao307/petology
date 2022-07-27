@@ -14,6 +14,9 @@ import 'package:doctor_care/shared/components/widgets.dart';
 import 'package:doctor_care/shared/cubit/states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geocode/geocode.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:hive/hive.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
@@ -214,6 +217,44 @@ class AppCubit extends Cubit<AppStates> {
         }
         emit(AuthErrorState(onError.toString()));
       },
+    );
+  }
+
+  // TODO: GET CURRENT ADDRESS FUNCTIONS
+
+  Future<void> getPosition() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    // Test if location services are enabled.
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      await Geolocator.openAppSettings();
+      return Future.error('Location services are disabled.');
+    }
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        await Geolocator.requestPermission();
+        return Future.error('Location permissions are denied');
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      await Geolocator.requestPermission();
+      return Future.error(
+          'Location permissions are permanently denied, we cannot request permissions.');
+    }
+
+    Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
+        .then((value) async {
+      printFullText(value.latitude.toString());
+      printFullText(value.longitude.toString());
+      // get address from lat and long from geocode
+
+    },
     );
   }
 }

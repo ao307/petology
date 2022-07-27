@@ -42,6 +42,7 @@ class RequestScreenBody extends StatelessWidget {
               fontWeight: FontWeight.w700,
             ),
           ),
+          // image
           const Padding(
             padding: EdgeInsets.symmetric(vertical: 40.0),
             child: SVGString(
@@ -194,11 +195,17 @@ class RequestScreenBody extends StatelessWidget {
             ),
           ),
           //location
-          const TitleTFF(
+          TitleTFF(
             title: 'detect your current location',
             hint: "location",
-            onlyRead: true,
-            suffixIcon: Icon(Icons.location_on, color: MyColors.cMainColor),
+            textEditingController: TextEditingController(),
+            validator: (value) {
+              if (value.isEmpty) {
+                return 'Please enter location';
+              }
+              return null;
+            },
+            suffixIcon: const Icon(Icons.location_on, color: MyColors.cMainColor),
           ),
           const SizedBox(height: 20),
           //phone number

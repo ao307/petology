@@ -64,7 +64,7 @@ class MyApp extends StatelessWidget {
     // context
     //     .setLocale(const Locale('en', 'US'));
     return BlocProvider(
-      create: (context) => AppCubit(),
+      create: (context) => AppCubit()..getPosition(),
       child: BlocConsumer<AppCubit, AppStates>(
         listener: (context, state) {},
         builder: (context, state) {
