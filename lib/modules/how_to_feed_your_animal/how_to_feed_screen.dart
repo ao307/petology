@@ -11,8 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../shared/cubit/cubit.dart';
 
 class HowToFeedScreen extends StatelessWidget {
-  const HowToFeedScreen({Key? key,this.petsModel}) : super(key: key);
-  final PetsModel? petsModel;
+  const HowToFeedScreen({Key? key,}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit, AppStates>(

@@ -1,5 +1,6 @@
 import 'package:doctor_care/models/home_model/how_to_care_friends.dart';
 import 'package:doctor_care/modules/home_screen/how_to_care_friends/care_items_in_home.dart';
+import 'package:doctor_care/modules/how_to_feed_your_animal/how_to_feed_screen.dart';
 import 'package:doctor_care/shared/components/reuse_functions.dart';
 import 'package:doctor_care/shared/themes/colors.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -44,6 +45,9 @@ class HTCFriends extends StatelessWidget {
             children: List.generate(howToCareFriendsList!.length, (index) => CIIHome(
               title: '${howToCareFriendsList![index].title}',
               imageLink: '${howToCareFriendsList![index].imageUrl}',
+              onTap: () {
+                navigateTo(context: context, widget: const HowToFeedScreen());
+              },
             ),
             ),
           ),

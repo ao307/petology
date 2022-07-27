@@ -155,19 +155,19 @@ class AppBarTxtButton extends StatelessWidget {
             children: [
               TextButton(
                 onPressed: () {
-                  if (currentIndex == 0) {
+                  if (currentIndex == 1) {
                    cubit(context).itemScrollController.scrollTo(
                         index: 1,
                         duration: const Duration(seconds: 1),
                         curve: Curves.easeInOutCubic,);
                   }
-                  else if (currentIndex == 1) {
+                  else if (currentIndex == 2) {
                     //navigateAndFinish(context: context, widget: widget!);
                     cubit(context).itemScrollController.scrollTo(
                       index: 2,
                       duration: const Duration(seconds: 1),
                       curve: Curves.easeInOutCubic,);
-                  }else if (currentIndex == 2) {
+                  }else if (currentIndex == 3) {
                     //navigateAndFinish(context: context, widget: widget!);
                     cubit(context).itemScrollController.scrollTo(
                       index: 4,
