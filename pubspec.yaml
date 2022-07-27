@@ -61,6 +61,8 @@ dependencies:
   geolocator: ^9.0.1
   #geocode: ^1.0.2
   #geocoding: ^2.0.4
+  geocode: ^1.0.2
+  geocoding: ^2.0.4
   #persistent_bottom_nav_bar: ^4.0.2
 dev_dependencies:
   flutter_test:

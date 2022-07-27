@@ -276,7 +276,6 @@ class AppCubit extends Cubit<AppStates> {
   }
 
   // TODO: UPLOAD REQUEST FUNCTION
-
   Future<void> uploadRequestHelp() async {
     emit(UploadRequestLoadingState());
     await DioHelper.postData(

@@ -45,7 +45,7 @@ class RequestScreenBody extends StatelessWidget {
           // image
           InkWell(
             onTap: () {
-
+              cubit(context).fetchRequestImages();
             },
             child: const Padding(
               padding: EdgeInsets.symmetric(vertical: 40.0),
