@@ -33,10 +33,11 @@ class AppCubit extends Cubit<AppStates> {
 
   // TODO: LIST OF APPBAR ITEMS
   final List<AppBarTxtButton> buttonsTitleList = [
-    AppBarTxtButton(txt: 'about us', widget: HomeScreen(), currentIndex: 0),
-    AppBarTxtButton(txt: 'categories', widget: HomeScreen(), currentIndex: 1),
-    AppBarTxtButton(txt: 'services', widget: HomeScreen(), currentIndex: 2),
-    AppBarTxtButton(txt: 'request', widget: RequestScreen(), currentIndex: 3),
+    AppBarTxtButton(txt: 'home', widget: HomeScreen(), currentIndex: 0),
+    AppBarTxtButton(txt: 'about us', widget: HomeScreen(), currentIndex: 1),
+    AppBarTxtButton(txt: 'categories', widget: HomeScreen(), currentIndex: 2),
+    AppBarTxtButton(txt: 'services', widget: HomeScreen(), currentIndex: 3),
+    AppBarTxtButton(txt: 'request', widget: RequestScreen(), currentIndex: 4),
   ];
 
   final ItemScrollController itemScrollController = ItemScrollController();
