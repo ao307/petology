@@ -4,3 +4,4 @@ const hCareSectionEP = "/static/homepage/pet-needs";
 const footerSectionEP = "/static/homepage/footer";
 const registerSectionEP = "/auth/register";
 const loginSectionEP = "/auth/login";
+const requestHelpEP = "/pets/request";

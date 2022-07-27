@@ -25,3 +25,14 @@ class AuthErrorState extends AppStates {
 
   AuthErrorState(this.error);
 }
+
+// UPLOAD REQUEST
+class UploadRequestLoadingState extends AppStates {}
+
+class UploadRequestSuccessState extends AppStates {}
+
+class UploadRequestErrorState extends AppStates {
+  final String error;
+
+  UploadRequestErrorState(this.error);
+}

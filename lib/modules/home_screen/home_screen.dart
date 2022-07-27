@@ -70,8 +70,7 @@ class HomeScreen extends StatelessWidget {
                                   "${cubit(context).aboutSectionModel!.body}",
                               onPress: () {},
                             ), //1
-                            CategorySection(
-                              key: cubit(context).categoryKey,
+                            const CategorySection(
                               title: "Lets get this right ....",
                               subtitle: "What kind of friend you looking for?",
                             ), //2

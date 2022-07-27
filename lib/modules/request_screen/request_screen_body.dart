@@ -42,11 +42,26 @@ class RequestScreenBody extends StatelessWidget {
               fontWeight: FontWeight.w700,
             ),
           ),
+<<<<<<< Updated upstream
           const Padding(
             padding: EdgeInsets.symmetric(vertical: 40.0),
             child: SVGString(
               cameraSvg,
               width: 100,
+=======
+          // image
+          InkWell(
+            onTap: () {
+
+            },
+            child: const Padding(
+              padding: EdgeInsets.symmetric(vertical: 40.0),
+              child: SVGString(
+                cameraSvg,
+                width: 100,
+              ),
+              
+>>>>>>> Stashed changes
             ),
           ),
           //name
