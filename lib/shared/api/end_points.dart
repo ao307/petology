@@ -5,3 +5,5 @@ const footerSectionEP = "/static/homepage/footer";
 const registerSectionEP = "/auth/register";
 const loginSectionEP = "/auth/login";
 const requestHelpEP = "/pets/request";
+const filterDropdownsEP = "/pets/filters/";
+const petsRequestEP = "/pets/request";

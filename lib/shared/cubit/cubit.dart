@@ -8,6 +8,7 @@ import 'package:doctor_care/models/home_model/about_model.dart';
 import 'package:doctor_care/models/home_model/first_section_model.dart';
 import 'package:doctor_care/models/home_model/footer_model.dart';
 import 'package:doctor_care/models/home_model/how_to_care_friends.dart';
+import 'package:doctor_care/models/pets_model.dart';
 import 'package:doctor_care/modules/home_screen/home_screen.dart';
 import 'package:doctor_care/modules/request_screen/request_screen.dart';
 import 'package:doctor_care/shared/api/end_points.dart';
@@ -318,17 +319,97 @@ class AppCubit extends Cubit<AppStates> {
 
   // TODO: GET FILTERS FUNCTION
   FiltersModel? filtersModel;
-  Future<void> getFilters(int id) async {
-    emit(GetFiltersLoadingState());
+
+  Future<void> getFilterDropdowns(int id) async {
+    emit(GetFiltersAndPetLoadingState());
     await DioHelper.getData(
-      url: "/pets/filters/$id",
-    ).then((value) {
+      url: "$filterDropdownsEP$id",
+    ).then((value) async {
       filtersModel = FiltersModel.fromJson(value.data);
-      emit(GetFiltersSuccessState());
+      await getPets(id);
     }).catchError(
       (onError) {
         printFullText(onError.toString());
-        emit(GetFiltersErrorState(onError.toString()));
+        emit(GetFiltersAndPetErrorState(onError.toString()));
+      },
+    );
+  }
+
+  List<PetsModel>? petsModel;
+
+  // TODO: GET PETS FUNCTION
+  Future<void> getPets(int id) async {
+    await DioHelper.getData(
+      url: "/categories/$id/pets",
+    ).then(
+      (value) {
+        // printFullText(value.data.toString());
+        petsModel =
+            (value.data as List).map((i) => PetsModel.fromJson(i)).toList();
+        emit(GetFiltersAndPetSuccessState());
+      },
+    ).catchError(
+      (onError) {
+        showToast(msg: "something went wrong in get pets");
+        printFullText(onError.toString());
+        emit(GetFiltersAndPetErrorState(onError.toString()));
+      },
+    );
+  }
+
+  //TODO: POST REQUEST FUNCTION
+  GlobalKey<FormState> formKeyPostRequest = GlobalKey<FormState>();
+  TextEditingController? categoryIdPostRequest = TextEditingController();
+  TextEditingController? locationPostRequest = TextEditingController();
+  TextEditingController? phoneNumberPostRequest = TextEditingController();
+  TextEditingController? descriptionPostRequest = TextEditingController();
+  TextEditingController? namePostRequest = TextEditingController();
+  TextEditingController? yearPostRequest = TextEditingController();
+  TextEditingController? monthPostRequest = TextEditingController();
+  TextEditingController? breadPostRequest = TextEditingController();
+  TextEditingController? colorPostRequest = TextEditingController();
+  TextEditingController? sizePostRequest = TextEditingController();
+  TextEditingController? hairPostRequest = TextEditingController();
+  TextEditingController? houseTrainedPostRequest = TextEditingController();
+  TextEditingController? carePostRequest = TextEditingController();
+
+  Future<void> postRequestFun() async {
+    emit(PostRequestLoadingState());
+    DioHelper.postData(
+      endPoint: petsRequestEP,
+      data: {
+        "pet": {
+          "name": "bossy",
+          "year": 2,
+          "month": 7,
+          "size": "small",
+          "breed": "labrador",
+          "gender": false,
+          "hairLength": "small",
+          "color": "black",
+          "careBehavior": "yes",
+          "houseTrained": false,
+          "description":
+              "Cats are similar in anatomy to other types of felids, they have a strong flexible body, quick reflexes, sharp teeth and retractable claws adapted to killing small prey, and have the ability to night vision and a well-developed sense of smell.",
+          "location": "34 shenzhen road",
+          "phone": "01155368336",
+          "vaccinated": false,
+          "categoryId": 2,
+          "image": "data:image/png;base64,${imagesBase64[0]}"
+        }
+      },
+    ).then((value) {
+      showToast(msg: 'request sent successfully');
+      emit(PostRequestLoadingState());
+    }).catchError(
+      (onError) {
+        if (onError.toString().contains('401')) {
+          showToast(msg: 'you must be logged in');
+        } else {
+          showToast(msg: "something went wrong");
+        }
+        printFullText(onError.toString());
+        emit(PostRequestErrorState(onError.toString()));
       },
     );
   }

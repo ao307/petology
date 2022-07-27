@@ -40,12 +40,22 @@ class UploadRequestErrorState extends AppStates {
 
 
 // Get Filters REQUEST
-class GetFiltersLoadingState extends AppStates {}
+class GetFiltersAndPetLoadingState extends AppStates {}
 
-class GetFiltersSuccessState extends AppStates {}
+class GetFiltersAndPetSuccessState extends AppStates {}
 
-class GetFiltersErrorState extends AppStates {
+class GetFiltersAndPetErrorState extends AppStates {
   final String error;
 
-  GetFiltersErrorState(this.error);
+  GetFiltersAndPetErrorState(this.error);
+}
+// Post REQUEST
+class PostRequestLoadingState extends AppStates {}
+
+class PostRequestSuccessState extends AppStates {}
+
+class PostRequestErrorState extends AppStates {
+  final String error;
+
+  PostRequestErrorState(this.error);
 }

@@ -25,17 +25,17 @@ class AdaptionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   return FutureBuilder(
-      future: cubit(context).getFilters(filterCategoryId!),
-      builder: (context, snapshot) {
-        if(snapshot.connectionState == ConnectionState.waiting){
-          return const LoadingScreen();
-        }
-        if(snapshot.hasError){
-          return Center(
-            child: Text(snapshot.error.toString()),
-          );
-        }
+    return FutureBuilder(
+        future: cubit(context).getFilterDropdowns(filterCategoryId!),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const LoadingScreen();
+          }
+          if (snapshot.hasError) {
+            return Center(
+              child: Text(snapshot.error.toString()),
+            );
+          }
           return BlocConsumer<AppCubit, AppStates>(
             listener: (context, state) {},
             builder: (BuildContext context, Object? state) {
@@ -61,26 +61,37 @@ class AdaptionScreen extends StatelessWidget {
                               child: Column(
                                 children: [
                                   Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
                                     children: [
                                       AdaptionDropDownItem(
                                         title: 'breed',
-                                        items: cubit(context).filtersModel!.breed??[],
+                                        items: cubit(context)
+                                                .filtersModel!
+                                                .breed ??
+                                            [],
                                         controller: TextEditingController(),
                                       ),
                                       AdaptionDropDownItem(
                                         title: 'age',
-                                        items: cubit(context).filtersModel!.ages??[],
+                                        items:
+                                            cubit(context).filtersModel!.ages ??
+                                                [],
                                         controller: TextEditingController(),
                                       ),
                                       AdaptionDropDownItem(
                                         title: 'size',
-                                        items: cubit(context).filtersModel!.size??[],
+                                        items:
+                                            cubit(context).filtersModel!.size ??
+                                                [],
                                         controller: TextEditingController(),
                                       ),
                                       AdaptionDropDownItem(
                                         title: 'good with',
-                                        items: cubit(context).filtersModel!.goodWith??[],
+                                        items: cubit(context)
+                                                .filtersModel!
+                                                .goodWith ??
+                                            [],
                                         controller: TextEditingController(),
                                       ),
                                     ],
@@ -89,26 +100,36 @@ class AdaptionScreen extends StatelessWidget {
                                     height: 40,
                                   ),
                                   Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
                                     children: [
                                       AdaptionDropDownItem(
                                         title: 'gender',
-                                        items: const ['Male',"Female"],
+                                        items: const ['Male', "Female"],
                                         controller: TextEditingController(),
                                       ),
                                       AdaptionDropDownItem(
                                         title: 'color',
-                                        items: cubit(context).filtersModel!.colors??[],
+                                        items: cubit(context)
+                                                .filtersModel!
+                                                .colors ??
+                                            [],
                                         controller: TextEditingController(),
                                       ),
                                       AdaptionDropDownItem(
                                         title: 'hair length',
-                                        items: cubit(context).filtersModel!.hairLength??[],
+                                        items: cubit(context)
+                                                .filtersModel!
+                                                .hairLength ??
+                                            [],
                                         controller: TextEditingController(),
                                       ),
                                       AdaptionDropDownItem(
                                         title: 'care & behavior',
-                                        items: cubit(context).filtersModel!.behaviour??[],
+                                        items: cubit(context)
+                                                .filtersModel!
+                                                .behaviour ??
+                                            [],
                                         controller: TextEditingController(),
                                       ),
                                     ],
@@ -119,7 +140,9 @@ class AdaptionScreen extends StatelessWidget {
                             const SizedBox(
                               height: 40,
                             ),
-                            const GVAdaption(),
+                            GVAdaption(
+                              petsModel: cubit(context).petsModel,
+                            ),
                             const FooterPets(),
                           ],
                         ),
@@ -130,7 +153,6 @@ class AdaptionScreen extends StatelessWidget {
               );
             },
           );
-        }
-    );
+        });
   }
 }

@@ -2,6 +2,7 @@ import 'package:doctor_care/modules/request_screen/request_screen_body.dart';
 import 'package:doctor_care/shared/components/main_component/appbar_pets.dart';
 import 'package:doctor_care/shared/components/main_component/footer_pets.dart';
 import 'package:doctor_care/shared/components/responsive.dart';
+import 'package:doctor_care/shared/components/widgets.dart';
 import 'package:doctor_care/shared/cubit/states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,17 +29,23 @@ class RequestScreen extends StatelessWidget {
                 child: const Text('mobile'),
               ),
             ),
-            desktop: Column(
+            desktop: Stack(
               children: [
-                const AppBarOfPets(),
-                Expanded(
-                  child: ListView(
-                    children: const [
-                      RequestScreenBody(),
-                      FooterPets(),
-                    ],
-                  ),
+                Column(
+                  children: [
+                    const AppBarOfPets(),
+                    Expanded(
+                      child: ListView(
+                        children: const [
+                          RequestScreenBody(),
+                          FooterPets(),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
+                if(state is PostRequestLoadingState)
+                  const LoadingScreen(),
               ],
             ),
           ),
