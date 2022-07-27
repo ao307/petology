@@ -1,9 +1,7 @@
-import 'package:doctor_care/modules/auth/signup_screen/signup_screen.dart';
 import 'package:doctor_care/modules/home_screen/home_screen.dart';
 import 'package:doctor_care/shared/api/remote/dio_helper.dart';
 import 'package:doctor_care/shared/bloc_observer.dart';
 import 'package:doctor_care/shared/components/constants.dart';
-import 'package:doctor_care/shared/components/reuse_functions.dart';
 import 'package:doctor_care/shared/cubit/cubit.dart';
 import 'package:doctor_care/shared/cubit/states.dart';
 import 'package:doctor_care/shared/themes/themes.dart';
@@ -12,7 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'modules/auth/login_screen/login_screen.dart';
 
 Widget startScreenPets = HomeScreen();
 // TODO: TO CHOOSE WHICH SCREEN TO SHOW FIRST IN START
@@ -22,6 +19,7 @@ Future<void> startScreen() async {
   final access = await box.get(accessTokenBox);
   //bring token from storage
   AppCubit.accessToken = access;
+
   if (access != null) {
     startScreenPets = HomeScreen();
   }
@@ -64,7 +62,7 @@ class MyApp extends StatelessWidget {
     // context
     //     .setLocale(const Locale('en', 'US'));
     return BlocProvider(
-      create: (context) => AppCubit()..getPosition(),
+      create: (context) => AppCubit(),
       child: BlocConsumer<AppCubit, AppStates>(
         listener: (context, state) {},
         builder: (context, state) {

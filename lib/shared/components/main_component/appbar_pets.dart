@@ -1,6 +1,5 @@
 import 'package:doctor_care/modules/auth/login_screen/login_screen.dart';
 import 'package:doctor_care/modules/auth/signup_screen/signup_screen.dart';
-import 'package:doctor_care/shared/components/constants.dart';
 import 'package:doctor_care/shared/components/reuse_functions.dart';
 import 'package:doctor_care/shared/components/widgets.dart';
 import 'package:doctor_care/shared/cubit/cubit.dart';
@@ -86,5 +85,3 @@ class ButtonsOfAuthInBarLogin extends StatelessWidget {
     );
   }
 }
-
-

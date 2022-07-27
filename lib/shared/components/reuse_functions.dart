@@ -1,5 +1,3 @@
-import 'dart:convert';
-import 'dart:io';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:doctor_care/shared/themes/colors.dart';
@@ -61,6 +59,9 @@ void showToast({
       timeInSecForIosWeb: 5,
       textColor: Colors.white,
       fontSize: 16.0,
+      webBgColor: '#492F24',
+      webPosition: 'center',
+      webShowClose: true,
     );
 
 
