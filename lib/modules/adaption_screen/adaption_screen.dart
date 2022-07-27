@@ -5,11 +5,7 @@ import 'package:doctor_care/shared/components/main_component/appbar_pets.dart';
 import 'package:doctor_care/shared/components/main_component/dropdown_menu_list.dart';
 import 'package:doctor_care/shared/components/main_component/footer_pets.dart';
 import 'package:doctor_care/shared/components/responsive.dart';
-import 'package:doctor_care/shared/components/reuse_functions.dart';
-import 'package:doctor_care/shared/components/widgets.dart';
 import 'package:doctor_care/shared/cubit/states.dart';
-import 'package:doctor_care/shared/themes/colors.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

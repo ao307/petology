@@ -2,6 +2,7 @@ import 'package:doctor_care/modules/help_screen/help_your_friend_body.dart';
 import 'package:doctor_care/shared/components/main_component/appbar_pets.dart';
 import 'package:doctor_care/shared/components/main_component/footer_pets.dart';
 import 'package:doctor_care/shared/components/responsive.dart';
+import 'package:doctor_care/shared/components/widgets.dart';
 import 'package:doctor_care/shared/cubit/states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,17 +29,23 @@ class HelpYourFriendScreen extends StatelessWidget {
                 child: const Text('mobile'),
               ),
             ),
-            desktop: Column(
+            desktop: Stack(
               children: [
-                const AppBarOfPets(),
-                Expanded(
-                  child: ListView(
-                    children: const [
-                      HelpYourFriendBody(),
-                      FooterPets(),
-                    ],
-                  ),
+                Column(
+                  children: [
+                    const AppBarOfPets(),
+                    Expanded(
+                      child: ListView(
+                        children: const [
+                          HelpYourFriendBody(),
+                          FooterPets(),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
+                if(state is UploadRequestLoadingState)
+                  const LoadingScreen(),
               ],
             ),
           ),

@@ -1,7 +1,6 @@
 // ignore_for_file: type_annotate_public_apis
 
 import 'package:dio/dio.dart';
-import 'package:doctor_care/shared/components/reuse_functions.dart';
 import 'package:doctor_care/shared/cubit/cubit.dart';
 
 // ignore: avoid_classes_with_only_static_members
@@ -43,7 +42,10 @@ class DioHelper {
     required Map<String, dynamic>? data,
     String lang = 'en',
   }) async {
-    dio!.options.headers = {'lang': lang, 'Content-Type': 'application/json'};
+    dio!.options.headers = {
+      'Content-Type': 'application/json',
+      "Authorization": "Bearer ${AppCubit.accessToken}",
+    };
     return dio!.post(endPoint, queryParameters: query, data: data);
   }
 

@@ -1,7 +1,6 @@
 // ignore_for_file: type_annotate_public_apis
 
 import 'dart:convert';
-import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:doctor_care/models/home_model/about_model.dart';
@@ -16,7 +15,6 @@ import 'package:doctor_care/shared/components/constants.dart';
 import 'package:doctor_care/shared/components/reuse_functions.dart';
 import 'package:doctor_care/shared/components/widgets.dart';
 import 'package:doctor_care/shared/cubit/states.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
@@ -41,7 +39,7 @@ class AppCubit extends Cubit<AppStates> {
 
   final ItemScrollController itemScrollController = ItemScrollController();
   final ItemPositionsListener itemPositionsListener =
-  ItemPositionsListener.create();
+      ItemPositionsListener.create();
 
   int? indexOfHome;
 
@@ -63,6 +61,7 @@ class AppCubit extends Cubit<AppStates> {
     emit(AppAnyState());
   }
 
+  // TODO: FUNCTIONS OF HOME DATA
   FirstSectionModel? firstSectionModel;
 
   Future<void> getFirstSection() async {
@@ -70,11 +69,11 @@ class AppCubit extends Cubit<AppStates> {
     await DioHelper.getData(
       url: firstSectionEP,
     ).then(
-          (value) {
+      (value) {
         firstSectionModel = FirstSectionModel.fromJson(value.data);
       },
     ).catchError(
-          (onError) {
+      (onError) {
         emit(HomeStaticErrorState(onError.toString()));
       },
     );
@@ -87,11 +86,11 @@ class AppCubit extends Cubit<AppStates> {
     await DioHelper.getData(
       url: aboutSectionEP,
     ).then(
-          (value) {
+      (value) {
         aboutSectionModel = AboutModel.fromJson(value.data);
       },
     ).catchError(
-          (onError) {
+      (onError) {
         emit(HomeStaticErrorState(onError.toString()));
       },
     );
@@ -104,11 +103,11 @@ class AppCubit extends Cubit<AppStates> {
     await DioHelper.getData(
       url: footerSectionEP,
     ).then(
-          (value) {
+      (value) {
         footerModel = FooterModel.fromJson(value.data);
       },
     ).catchError(
-          (onError) {
+      (onError) {
         emit(HomeStaticErrorState(onError.toString()));
       },
     );
@@ -121,16 +120,16 @@ class AppCubit extends Cubit<AppStates> {
     await DioHelper.getData(
       url: hCareSectionEP,
     ).then(
-          (value) {
+      (value) {
         howToCareFriendsList = value.data
             .map<HowToCareFriends>(
               (json) => HowToCareFriends.fromJson(json),
-        )
+            )
             .toList();
         emit(HomeStaticSuccessState());
       },
     ).catchError(
-          (onError) {
+      (onError) {
         emit(HomeStaticErrorState(onError.toString()));
       },
     );
@@ -144,6 +143,7 @@ class AppCubit extends Cubit<AppStates> {
     await getAboutSection();
     await howToCareFriend();
   }
+
   // TODO: SIGN OUT FUNCTION
   Future<void> logout() async {
     await box.delete('token');
@@ -174,14 +174,14 @@ class AppCubit extends Cubit<AppStates> {
         "country": countrySignUp!.text,
       },
     ).then(
-          (value) {
+      (value) {
         showToast(msg: 'created successfully');
         accessToken = value.data['accessToken'];
         box.put(accessTokenBox, accessToken);
         emit(AuthSuccessState());
       },
     ).catchError(
-          (onError) {
+      (onError) {
         if (onError.toString().contains('409')) {
           showToast(msg: 'email already exist');
         } else {
@@ -204,14 +204,14 @@ class AppCubit extends Cubit<AppStates> {
       endPoint: loginSectionEP,
       data: {"email": emailLogin!.text, "password": passwordLogin!.text},
     ).then(
-          (value) {
+      (value) {
         showToast(msg: 'login successfully');
         accessToken = value.data['accessToken'];
         box.put(accessTokenBox, accessToken);
         emit(AuthSuccessState());
       },
     ).catchError(
-          (onError) {
+      (onError) {
         if (onError.toString().contains('401')) {
           showToast(msg: 'wrong email or password');
         } else {
@@ -247,27 +247,29 @@ class AppCubit extends Cubit<AppStates> {
     if (permission == LocationPermission.deniedForever) {
       await Geolocator.requestPermission();
       return Future.error(
-        'Location permissions are permanently denied, we cannot request permissions.',);
+        'Location permissions are permanently denied, we cannot request permissions.',
+      );
     }
 
-    Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
-        .then((value) async {
-      printFullText(value.latitude.toString());
-      printFullText(value.longitude.toString());
-      // get address from lat and long from geocode
-    },
+    Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high).then(
+      (value) async {
+        printFullText(value.latitude.toString());
+        printFullText(value.longitude.toString());
+        // get address from lat and long from geocode
+      },
     );
   }
 
   // TODO: fETCH IMAGES AND CONVERT IT TO BASE64 FUNCTION
   Uint8List? fileBytes;
   List<String> imagesBase64 = [];
+
   void fetchRequestImages() async {
     imagesBase64.clear();
     final ImagePicker picker = ImagePicker();
     final List<XFile>? images = await picker.pickMultiImage();
     if (images != null) {
-      for(final image in images) {
+      for (final image in images) {
         fileBytes = await image.readAsBytes();
         imagesBase64.add(base64Encode(fileBytes!));
       }
@@ -276,25 +278,39 @@ class AppCubit extends Cubit<AppStates> {
   }
 
   // TODO: UPLOAD REQUEST FUNCTION
+  GlobalKey<FormState> formKeyRequestHelp = GlobalKey<FormState>();
+  TextEditingController? categoryIdRequestHelp = TextEditingController();
+  TextEditingController? locationRequestHelp = TextEditingController();
+  TextEditingController? phoneNumberRequestHelp = TextEditingController();
+
   Future<void> uploadRequestHelp() async {
+    printFullText(accessToken!);
     emit(UploadRequestLoadingState());
     await DioHelper.postData(
       endPoint: requestHelpEP,
-      data:{
-        "categoryId": -521075.08449715376,
-        "imageBase64": "quis est",
-        "location": "nulla",
-        "phoneNumber": "commodo labore"
+      data: {
+        "categoryId": categoryIdRequestHelp!.text == "dog" ? 1 : 2,
+        "imageBase64": "data:image/png;base64,${imagesBase64[0]}",
+        "location": locationRequestHelp!.text,
+        "phoneNumber": phoneNumberRequestHelp!.text,
       },
     ).then(
-          (value) {
+      (value) {
         showToast(msg: 'request sent successfully');
-        imagesBase64.cast();
+        imagesBase64.clear();
+        categoryIdRequestHelp!.clear();
+        locationRequestHelp!.clear();
+        phoneNumberRequestHelp!.clear();
         emit(UploadRequestSuccessState());
       },
     ).catchError(
-          (onError) {
-        showToast(msg: "something went wrong");
+      (onError) {
+        if (onError.toString().contains('401')) {
+          showToast(msg: 'you must be logged in');
+        } else {
+          showToast(msg: "something went wrong");
+        }
+        printFullText(onError.toString());
         emit(UploadRequestErrorState(onError.toString()));
       },
     );

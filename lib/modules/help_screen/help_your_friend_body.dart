@@ -22,7 +22,7 @@ class HelpYourFriendBody extends StatelessWidget {
         return Container(
           margin: EdgeInsets.symmetric(
               horizontal: screenW(context) * 0.32,
-              vertical: screenH(context) * 0.05),
+              vertical: screenH(context) * 0.05,),
           padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 40),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(88.0),
@@ -39,89 +39,109 @@ class HelpYourFriendBody extends StatelessWidget {
             ],
             color: Theme.of(context).scaffoldBackgroundColor,
           ),
-          child: Column(
-            children: [
-              Text(
-                'help your friend'.tr().toCapitalized(),
-                style: const TextStyle(
-                  height: 1,
-                  fontSize: 40.0,
-                  fontWeight: FontWeight.w700,
+          child: Form(
+            key: cubit(context).formKeyRequestHelp,
+            child: Column(
+              children: [
+                Text(
+                  'help your friend'.tr().toCapitalized(),
+                  style: const TextStyle(
+                    height: 1,
+                    fontSize: 40.0,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
-              ),
-              // image
-              if (cubit(context).imagesBase64.isEmpty)
-                InkWell(
-                  onTap: () {
-                    cubit(context).fetchRequestImages();
-                  },
-                  child: const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 40.0),
-                    child: SVGString(
-                      cameraSvg,
-                      width: 100,
+                // image
+                if (cubit(context).imagesBase64.isEmpty)
+                  InkWell(
+                    onTap: () {
+                      cubit(context).fetchRequestImages();
+                    },
+                    child: const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 40.0),
+                      child: SVGString(
+                        cameraSvg,
+                        width: 100,
+                      ),
+                    ),
+                  )
+                else
+                  InkWell(
+                    onTap: () {
+                      cubit(context).fetchRequestImages();
+                    },
+                    child: Image.memory(
+                      base64Decode(cubit(context).imagesBase64[0]),
+                      width: 200,
+                      height: 200,
                     ),
                   ),
-                )
-              else
-                InkWell(
-                  onTap: () {
-                    cubit(context).fetchRequestImages();
+                //category
+                CustomDropdownExample(
+                  items: [
+                    'dog'.toTitleCase(),
+                    'cat'.toTitleCase(),
+                  ],
+                  hintText: 'category',
+                  errorText: 'enter category',
+                  jobRoleCtrl: cubit(context).categoryIdRequestHelp!,
+                ),
+                const SizedBox(height: 20),
+                // location
+                 TitleTFF(
+                  title: 'detect your current location',
+                  hint: "location",
+                  textEditingController: cubit(context).locationRequestHelp,
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return 'enter location';
+                    }
+                    return null;
                   },
-                  child: Image.memory(
-                    base64Decode(cubit(context).imagesBase64[0]),
-                    width: 200,
-                    height: 200,
+                  suffixIcon: const Icon(Icons.location_on, color: MyColors.cMainColor),
+                ),
+                const SizedBox(height: 20),
+                // phone number
+                RoundedTextFormFieldPets(
+                  textEditingFormField: cubit(context).phoneNumberRequestHelp,
+                  hintText: "phone number",
+                  validator: (value) {
+                    return validateMobile(value!);
+                  },
+                ),
+                const SizedBox(height: 10),
+                // send button
+                SizedBox(
+                  width: double.infinity,
+                  height: screenH(context) * 0.08,
+                  child: OutlinedButtonPets(
+                    text: 'send'.tr().toCapitalized(),
+                    onPressed: () {
+                      if (cubit(context).formKeyRequestHelp.currentState!.validate()) {
+                        if(cubit(context).imagesBase64.isNotEmpty){
+                          cubit(context).uploadRequestHelp();
+                        }else{
+                          showToast(msg: 'please select image');
+                        }
+                      }
+                    },
+                    backColor: MyColors.cPrimary,
+                    txtColor: MyColors.cThirdColor,
                   ),
                 ),
-              //category
-              CustomDropdownExample(
-                items: const [
-                  'Cat',
-                  'Dog',
-                ],
-                hintText: 'category',
-                errorText: '',
-                jobRoleCtrl: TextEditingController(),
-              ),
-              const SizedBox(height: 20),
-              // location
-              const TitleTFF(
-                title: 'detect your current location',
-                hint: "location",
-                onlyRead: true,
-                suffixIcon: Icon(Icons.location_on, color: MyColors.cMainColor),
-              ),
-              const SizedBox(height: 20),
-              // phone number
-              RoundedTextFormFieldPets(
-                textEditingFormField: TextEditingController(),
-                hintText: "phone number",
-              ),
-              const SizedBox(height: 10),
-              // send button
-              SizedBox(
-                width: double.infinity,
-                height: screenH(context) * 0.08,
-                child: OutlinedButtonPets(
-                  text: 'send'.tr().toCapitalized(),
-                  onPressed: () {},
-                  backColor: MyColors.cPrimary,
-                  txtColor: MyColors.cThirdColor,
+                const SizedBox(height: 20),
+                // call button
+                SizedBox(
+                  width: double.infinity,
+                  height: screenH(context) * 0.08,
+                  child: OutlinedButtonPets(
+                    text: 'call'.tr().toCapitalized(),
+                    onPressed: () {},
+                    backColor: MyColors.cThirdColor,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 20),
-              // call button
-              SizedBox(
-                width: double.infinity,
-                height: screenH(context) * 0.08,
-                child: OutlinedButtonPets(
-                  text: 'call'.tr().toCapitalized(),
-                  onPressed: () {},
-                  backColor: MyColors.cThirdColor,
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         );
       },
