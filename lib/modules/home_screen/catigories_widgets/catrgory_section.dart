@@ -1,3 +1,4 @@
+import 'package:doctor_care/modules/adaption_screen/adaption_screen.dart';
 import 'package:doctor_care/modules/home_screen/catigories_widgets/card_of_catigories.dart';
 import 'package:doctor_care/shared/components/reuse_functions.dart';
 import 'package:doctor_care/shared/components/svg_images.dart';
@@ -47,15 +48,21 @@ class CategorySection extends StatelessWidget {
           const SizedBox(height: 50),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
+            children: [
               ItemOfThirdHomeTop(
                 svgCode: dogCategories,
                 title: 'dog',
+                onPress: () {
+                  navigateTo(context: context, widget: AdaptionScreen(filterCategoryId: 1,),);
+                },
               ),
-              SizedBox(width: 150),
+              const SizedBox(width: 150),
               ItemOfThirdHomeTop(
                 svgCode: catCategories,
                 title: 'cat',
+                onPress: () {
+                  navigateTo(context: context, widget: AdaptionScreen(filterCategoryId: 2,),);
+                },
               ),
             ],
           ),

@@ -23,7 +23,7 @@ class ItemOfThirdHomeTop extends StatelessWidget {
         ),
       ),
       child: InkWell(
-        onTap: () {},
+        onTap: onPress,
         borderRadius: BorderRadius.circular(30.0),
         hoverColor: const Color(0xFFFFE3C5),
         child: Container(
