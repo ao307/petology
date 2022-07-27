@@ -1,4 +1,5 @@
-import 'package:doctor_care/modules/home_screen/about_animal/top_images.dart';
+import 'package:doctor_care/models/pets_model.dart';
+import 'package:doctor_care/modules/home_screen/about_animal_screen/about_animal_top_images.dart';
 import 'package:doctor_care/shared/components/main_component/appbar_pets.dart';
 import 'package:doctor_care/shared/components/main_component/footer_pets.dart';
 import 'package:doctor_care/shared/components/responsive.dart';
@@ -10,11 +11,11 @@ import 'package:doctor_care/shared/themes/colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../shared/cubit/cubit.dart';
 
 class AboutAnimalScreen extends StatelessWidget {
-  const AboutAnimalScreen({Key? key}) : super(key: key);
+  const AboutAnimalScreen({Key? key, this.petsModel}) : super(key: key);
+  final PetsModel? petsModel;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +38,7 @@ class AboutAnimalScreen extends StatelessWidget {
                 Expanded(
                   child: ListView(
                     children: [
-                      const TopImagesAboutAnimal(),
+                      TopImagesAboutAnimal(images: petsModel!.image),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -45,11 +46,11 @@ class AboutAnimalScreen extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Padding(
-                                  padding: EdgeInsets.all(20),
+                                Padding(
+                                  padding: const EdgeInsets.all(20),
                                   child: Text(
-                                    'Elsa',
-                                    style: TextStyle(
+                                    "${petsModel!.name}",
+                                    style: const TextStyle(
                                       fontSize: 50.0,
                                       fontWeight: FontWeight.w700,
                                     ),
@@ -71,7 +72,8 @@ class AboutAnimalScreen extends StatelessWidget {
                                           ),
                                           children: [
                                             TextSpan(
-                                              text: 'ali mohamed'.toTitleCase(),
+                                              text:
+                                                  '${petsModel!.user!.firstName} ${petsModel!.user!.firstName}',
                                             )
                                           ],
                                         ),
@@ -151,6 +153,7 @@ class AboutAnimalScreen extends StatelessWidget {
                                     ],
                                   ),
                                 ),
+                                // TODO DESCRIPTION AND ANIMAL NAME
                                 Padding(
                                   padding: const EdgeInsets.all(20),
                                   child: Column(
@@ -158,20 +161,16 @@ class AboutAnimalScreen extends StatelessWidget {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        'meet elsa'.tr().toTitleCase(),
+                                        'meet ${petsModel!.name}'.tr().toTitleCase(),
                                         style: const TextStyle(
                                           fontSize: 50.0,
                                           fontWeight: FontWeight.w700,
                                         ),
                                       ),
                                       Text(
-                                        """
-Hi,
-
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita
-
- kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam """,
+                                        '${petsModel!.description}'
+                                            .tr()
+                                            .toCapitalized(),
                                         style: TextStyle(
                                           fontSize: 30.0,
                                           color: const Color(0xFF492F24)

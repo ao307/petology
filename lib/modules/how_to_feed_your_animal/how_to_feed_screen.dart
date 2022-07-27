@@ -1,3 +1,4 @@
+import 'package:doctor_care/models/pets_model.dart';
 import 'package:doctor_care/shared/components/main_component/appbar_pets.dart';
 import 'package:doctor_care/shared/components/main_component/footer_pets.dart';
 import 'package:doctor_care/shared/components/responsive.dart';
@@ -10,8 +11,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../shared/cubit/cubit.dart';
 
 class HowToFeedScreen extends StatelessWidget {
-  const HowToFeedScreen({Key? key}) : super(key: key);
-
+  const HowToFeedScreen({Key? key,this.petsModel}) : super(key: key);
+  final PetsModel? petsModel;
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit, AppStates>(
